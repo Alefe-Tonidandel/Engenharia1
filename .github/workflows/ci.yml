@@ -7,4 +7,3 @@ jobs:
       - uses: actions/checkout@v4
       - name: Compilar e rodar os testes
         run: make test
-        working-directory: BomPreco
