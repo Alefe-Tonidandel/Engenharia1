@@ -1,0 +1,10 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compilar e rodar os testes
+        run: make test
+        working-directory: BomPreco
