@@ -6,4 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compilar e rodar os testes
-        run: make test
+        run: |
+          mkdir -p bin
+          make test
+        working-directory: BomPreco
