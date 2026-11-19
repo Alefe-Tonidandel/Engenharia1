@@ -1,5 +1,0 @@
-<map id="ItemEstoque" name="ItemEstoque">
-<area shape="rect" id="Node000001" title="Situacao do estoque de algum produto." alt="" coords="5,353,185,759"/>
-<area shape="rect" id="Node000002" href="$classData.html" title="Data do calendario." alt="" coords="37,5,153,291"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,291,98,337,93,337,93,291"/>
-</map>
