@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bom-Preco: Código-Fonte de src/banco.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Bom-Preco
+   </div>
+   <div id="projectbrief">Controle de estoque e vendas por lote</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">banco.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="banco_8cpp.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="banco_8h.html">banco.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="foldopen" id="foldopen00003" data-start="{" data-end="}">
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="classBanco.html#a686e51b219dc175e432e91559298b259">    3</a></span><a class="code hl_function" href="classBanco.html#a686e51b219dc175e432e91559298b259">Banco::Banco</a>() : produtos_(), lotes_(), vendas_(),</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>                 proximoIdLote_(1), proximoIdVenda_(1) {}</div>
+</div>
+<div class="foldopen" id="foldopen00005" data-start="{" data-end="}">
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classBanco.html#aad87423e35203dc44656c4d30d8f21ed">    5</a></span><a class="code hl_function" href="classBanco.html#a686e51b219dc175e432e91559298b259">Banco::Banco</a>(<span class="keyword">const</span> <a class="code hl_class" href="classBanco.html">Banco</a>&amp; o)</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    : produtos_(o.produtos_), lotes_(o.lotes_), vendas_(o.vendas_),</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>      proximoIdLote_(o.proximoIdLote_), proximoIdVenda_(o.proximoIdVenda_) {}</div>
+</div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classBanco.html#a47510dbe30f1f449a2d41bbafbfe297b">    8</a></span><a class="code hl_class" href="classBanco.html">Banco</a>&amp; <a class="code hl_function" href="classBanco.html#a47510dbe30f1f449a2d41bbafbfe297b">Banco::operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classBanco.html">Banco</a>&amp; o) {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;o) {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        <a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a> = o.<a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>; <a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a> = o.<a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>; <a class="code hl_variable" href="classBanco.html#a940a075b9d2dceea1cdb3f95d1ecf795">vendas_</a> = o.<a class="code hl_variable" href="classBanco.html#a940a075b9d2dceea1cdb3f95d1ecf795">vendas_</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <a class="code hl_variable" href="classBanco.html#a4231a73fc2ccc8b22c225b4e5aabd63e">proximoIdLote_</a> = o.<a class="code hl_variable" href="classBanco.html#a4231a73fc2ccc8b22c225b4e5aabd63e">proximoIdLote_</a>; <a class="code hl_variable" href="classBanco.html#a8795e39af586450957effe5ddc32bca5">proximoIdVenda_</a> = o.<a class="code hl_variable" href="classBanco.html#a8795e39af586450957effe5ddc32bca5">proximoIdVenda_</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    }</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}</div>
+</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classBanco.html#af69f9b0da3521d7c1e422f21dfd5829e">   15</a></span><a class="code hl_function" href="classBanco.html#af69f9b0da3521d7c1e422f21dfd5829e">Banco::~Banco</a>() {}</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classBanco.html#a877eff6e901b25361e8b7cfb97732419">   17</a></span><a class="code hl_class" href="classProduto.html">Produto</a>* <a class="code hl_function" href="classBanco.html#a877eff6e901b25361e8b7cfb97732419">Banco::buscarProduto</a>(<span class="keyword">const</span> std::string&amp; codigo) {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>.size(); ++i)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>[i].codigo() == codigo) <span class="keywordflow">return</span> &amp;<a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>[i];</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
+</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classBanco.html#ab7c03ec1ded8f880248a52803ac30758">   22</a></span><span class="keyword">const</span> <a class="code hl_class" href="classProduto.html">Produto</a>* <a class="code hl_function" href="classBanco.html#a877eff6e901b25361e8b7cfb97732419">Banco::buscarProduto</a>(<span class="keyword">const</span> std::string&amp; codigo)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>.size(); ++i)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>[i].codigo() == codigo) <span class="keywordflow">return</span> &amp;<a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>[i];</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
+</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classBanco.html#a3f669f3789e5d4fb34dce5aacb98f48b">   27</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBanco.html#a3f669f3789e5d4fb34dce5aacb98f48b">Banco::adicionarProduto</a>(<span class="keyword">const</span> <a class="code hl_class" href="classProduto.html">Produto</a>&amp; p) { <a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>.push_back(p); }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classBanco.html#afa75131fc2401fd73588dcff5e1ee7c3">   28</a></span><span class="keyword">const</span> std::vector&lt;Produto&gt;&amp; <a class="code hl_function" href="classBanco.html#afa75131fc2401fd73588dcff5e1ee7c3">Banco::produtos</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classBanco.html#a095a8a365521399e216a69c04a8fe293">produtos_</a>; }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classBanco.html#a94fdf809685daa20d617b8d59115e225">   30</a></span><a class="code hl_class" href="classLoteEstoque.html">LoteEstoque</a> <a class="code hl_function" href="classBanco.html#a94fdf809685daa20d617b8d59115e225">Banco::adicionarLote</a>(<span class="keywordtype">int</span> idUnidade, <span class="keyword">const</span> std::string&amp; codigoProduto,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                                 <span class="keywordtype">int</span> quantidade, <span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; dataEntrada,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                                 <span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; validade) {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="classLoteEstoque.html">LoteEstoque</a> l(<a class="code hl_variable" href="classBanco.html#a4231a73fc2ccc8b22c225b4e5aabd63e">proximoIdLote_</a>++, idUnidade, codigoProduto, quantidade,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                  dataEntrada, validade);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>.push_back(l);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> l;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classBanco.html#a10332a6b9b443669547f911f0b9a4ed5">   38</a></span>std::vector&lt;LoteEstoque&gt;&amp; <a class="code hl_function" href="classBanco.html#a10332a6b9b443669547f911f0b9a4ed5">Banco::lotes</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>; }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classBanco.html#a68b58ec933bb84b61a093494fdb7105e">   39</a></span><span class="keyword">const</span> std::vector&lt;LoteEstoque&gt;&amp; <a class="code hl_function" href="classBanco.html#a10332a6b9b443669547f911f0b9a4ed5">Banco::lotes</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>; }</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classBanco.html#a9cfac5776c81e3d2c8085fb1706495fb">   40</a></span><span class="keyword">const</span> <a class="code hl_class" href="classLoteEstoque.html">LoteEstoque</a>* <a class="code hl_function" href="classBanco.html#a9cfac5776c81e3d2c8085fb1706495fb">Banco::buscarLote</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>.size(); ++i)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>[i].<span class="keywordtype">id</span>() == <span class="keywordtype">id</span>) <span class="keywordflow">return</span> &amp;<a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>[i];</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classBanco.html#a794859edada832adcaef5cd42d13f679">   46</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classBanco.html#a794859edada832adcaef5cd42d13f679">Banco::saldoValido</a>(<span class="keywordtype">int</span> idUnidade, <span class="keyword">const</span> std::string&amp; codigoProduto,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                       <span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; hoje)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">int</span> total = 0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>.size(); ++i) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> <a class="code hl_class" href="classLoteEstoque.html">LoteEstoque</a>&amp; l = <a class="code hl_variable" href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">lotes_</a>[i];</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (l.<a class="code hl_function" href="classLoteEstoque.html#a68467e34f015214c11d42888b4977e72">idUnidade</a>() == idUnidade &amp;&amp; l.<a class="code hl_function" href="classLoteEstoque.html#ab86ac8ebc9cc7757417364ea4a332213">codigoProduto</a>() == codigoProduto</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            &amp;&amp; !l.<a class="code hl_function" href="classLoteEstoque.html#a195107dcb3ab8b96fea1b3b1f224c454">vencido</a>(hoje))</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            total += l.<a class="code hl_function" href="classLoteEstoque.html#acb85e61fccf8e221abcf115b2bfb3717">saldo</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">return</span> total;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classBanco.html#a3e3806d83f280c09dd5b3871bd1ff191">   58</a></span><a class="code hl_class" href="classVenda.html">Venda</a> <a class="code hl_function" href="classBanco.html#a3e3806d83f280c09dd5b3871bd1ff191">Banco::adicionarVenda</a>(<span class="keywordtype">int</span> idUnidade, <span class="keyword">const</span> std::string&amp; codigoProduto,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                            <span class="keywordtype">int</span> quantidade, <span class="keyword">const</span> <a class="code hl_class" href="classDinheiro.html">Dinheiro</a>&amp; valorTotal,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                            <span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; data, <span class="keywordtype">int</span> idUsuario) {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_class" href="classVenda.html">Venda</a> v(<a class="code hl_variable" href="classBanco.html#a8795e39af586450957effe5ddc32bca5">proximoIdVenda_</a>++, idUnidade, codigoProduto, quantidade,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            valorTotal, data, idUsuario);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_variable" href="classBanco.html#a940a075b9d2dceea1cdb3f95d1ecf795">vendas_</a>.push_back(v);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> v;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classBanco.html#a82643789555db5eb2e871ec3eafb6367">   66</a></span><span class="keyword">const</span> std::vector&lt;Venda&gt;&amp; <a class="code hl_function" href="classBanco.html#a82643789555db5eb2e871ec3eafb6367">Banco::vendas</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classBanco.html#a940a075b9d2dceea1cdb3f95d1ecf795">vendas_</a>; }</div>
+<div class="ttc" id="abanco_8h_html"><div class="ttname"><a href="banco_8h.html">banco.h</a></div><div class="ttdoc">Declaração da classe Banco, que guarda produtos, lotes e vendas em memoria.</div></div>
+<div class="ttc" id="aclassBanco_html"><div class="ttname"><a href="classBanco.html">Banco</a></div><div class="ttdoc">Banco de dados.</div><div class="ttdef"><b>Definição</b> <a href="banco_8h_source.html#l00020">banco.h:20</a></div></div>
+<div class="ttc" id="aclassBanco_html_a095a8a365521399e216a69c04a8fe293"><div class="ttname"><a href="classBanco.html#a095a8a365521399e216a69c04a8fe293">Banco::produtos_</a></div><div class="ttdeci">std::vector&lt; Produto &gt; produtos_</div><div class="ttdef"><b>Definição</b> <a href="banco_8h_source.html#l00092">banco.h:92</a></div></div>
+<div class="ttc" id="aclassBanco_html_a10332a6b9b443669547f911f0b9a4ed5"><div class="ttname"><a href="classBanco.html#a10332a6b9b443669547f911f0b9a4ed5">Banco::lotes</a></div><div class="ttdeci">std::vector&lt; LoteEstoque &gt; &amp; lotes()</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00038">banco.cpp:38</a></div></div>
+<div class="ttc" id="aclassBanco_html_a3e3806d83f280c09dd5b3871bd1ff191"><div class="ttname"><a href="classBanco.html#a3e3806d83f280c09dd5b3871bd1ff191">Banco::adicionarVenda</a></div><div class="ttdeci">Venda adicionarVenda(int idUnidade, const std::string &amp;codigoProduto, int quantidade, const Dinheiro &amp;valorTotal, const Data &amp;data, int idUsuario)</div><div class="ttdoc">Registrar uma venda.</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00058">banco.cpp:58</a></div></div>
+<div class="ttc" id="aclassBanco_html_a3e8931339ff6a05d0ad9e0193da9b0d3"><div class="ttname"><a href="classBanco.html#a3e8931339ff6a05d0ad9e0193da9b0d3">Banco::lotes_</a></div><div class="ttdeci">std::vector&lt; LoteEstoque &gt; lotes_</div><div class="ttdef"><b>Definição</b> <a href="banco_8h_source.html#l00093">banco.h:93</a></div></div>
+<div class="ttc" id="aclassBanco_html_a3f669f3789e5d4fb34dce5aacb98f48b"><div class="ttname"><a href="classBanco.html#a3f669f3789e5d4fb34dce5aacb98f48b">Banco::adicionarProduto</a></div><div class="ttdeci">void adicionarProduto(const Produto &amp;p)</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00027">banco.cpp:27</a></div></div>
+<div class="ttc" id="aclassBanco_html_a4231a73fc2ccc8b22c225b4e5aabd63e"><div class="ttname"><a href="classBanco.html#a4231a73fc2ccc8b22c225b4e5aabd63e">Banco::proximoIdLote_</a></div><div class="ttdeci">int proximoIdLote_</div><div class="ttdef"><b>Definição</b> <a href="banco_8h_source.html#l00095">banco.h:95</a></div></div>
+<div class="ttc" id="aclassBanco_html_a47510dbe30f1f449a2d41bbafbfe297b"><div class="ttname"><a href="classBanco.html#a47510dbe30f1f449a2d41bbafbfe297b">Banco::operator=</a></div><div class="ttdeci">Banco &amp; operator=(const Banco &amp;o)</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00008">banco.cpp:8</a></div></div>
+<div class="ttc" id="aclassBanco_html_a686e51b219dc175e432e91559298b259"><div class="ttname"><a href="classBanco.html#a686e51b219dc175e432e91559298b259">Banco::Banco</a></div><div class="ttdeci">Banco()</div><div class="ttdoc">Cria um banco vazio.</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00003">banco.cpp:3</a></div></div>
+<div class="ttc" id="aclassBanco_html_a794859edada832adcaef5cd42d13f679"><div class="ttname"><a href="classBanco.html#a794859edada832adcaef5cd42d13f679">Banco::saldoValido</a></div><div class="ttdeci">int saldoValido(int idUnidade, const std::string &amp;codigoProduto, const Data &amp;hoje) const</div><div class="ttdoc">Saldos validos.</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00046">banco.cpp:46</a></div></div>
+<div class="ttc" id="aclassBanco_html_a82643789555db5eb2e871ec3eafb6367"><div class="ttname"><a href="classBanco.html#a82643789555db5eb2e871ec3eafb6367">Banco::vendas</a></div><div class="ttdeci">const std::vector&lt; Venda &gt; &amp; vendas() const</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00066">banco.cpp:66</a></div></div>
+<div class="ttc" id="aclassBanco_html_a877eff6e901b25361e8b7cfb97732419"><div class="ttname"><a href="classBanco.html#a877eff6e901b25361e8b7cfb97732419">Banco::buscarProduto</a></div><div class="ttdeci">Produto * buscarProduto(const std::string &amp;codigo)</div><div class="ttdoc">Busca um produto pelo código.</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00017">banco.cpp:17</a></div></div>
+<div class="ttc" id="aclassBanco_html_a8795e39af586450957effe5ddc32bca5"><div class="ttname"><a href="classBanco.html#a8795e39af586450957effe5ddc32bca5">Banco::proximoIdVenda_</a></div><div class="ttdeci">int proximoIdVenda_</div><div class="ttdef"><b>Definição</b> <a href="banco_8h_source.html#l00095">banco.h:95</a></div></div>
+<div class="ttc" id="aclassBanco_html_a940a075b9d2dceea1cdb3f95d1ecf795"><div class="ttname"><a href="classBanco.html#a940a075b9d2dceea1cdb3f95d1ecf795">Banco::vendas_</a></div><div class="ttdeci">std::vector&lt; Venda &gt; vendas_</div><div class="ttdef"><b>Definição</b> <a href="banco_8h_source.html#l00094">banco.h:94</a></div></div>
+<div class="ttc" id="aclassBanco_html_a94fdf809685daa20d617b8d59115e225"><div class="ttname"><a href="classBanco.html#a94fdf809685daa20d617b8d59115e225">Banco::adicionarLote</a></div><div class="ttdeci">LoteEstoque adicionarLote(int idUnidade, const std::string &amp;codigoProduto, int quantidade, const Data &amp;dataEntrada, const Data &amp;validade)</div><div class="ttdoc">Cria um novo lote.</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00030">banco.cpp:30</a></div></div>
+<div class="ttc" id="aclassBanco_html_a9cfac5776c81e3d2c8085fb1706495fb"><div class="ttname"><a href="classBanco.html#a9cfac5776c81e3d2c8085fb1706495fb">Banco::buscarLote</a></div><div class="ttdeci">const LoteEstoque * buscarLote(int id) const</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00040">banco.cpp:40</a></div></div>
+<div class="ttc" id="aclassBanco_html_af69f9b0da3521d7c1e422f21dfd5829e"><div class="ttname"><a href="classBanco.html#af69f9b0da3521d7c1e422f21dfd5829e">Banco::~Banco</a></div><div class="ttdeci">~Banco()</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00015">banco.cpp:15</a></div></div>
+<div class="ttc" id="aclassBanco_html_afa75131fc2401fd73588dcff5e1ee7c3"><div class="ttname"><a href="classBanco.html#afa75131fc2401fd73588dcff5e1ee7c3">Banco::produtos</a></div><div class="ttdeci">const std::vector&lt; Produto &gt; &amp; produtos() const</div><div class="ttdef"><b>Definição</b> <a href="banco_8cpp_source.html#l00028">banco.cpp:28</a></div></div>
+<div class="ttc" id="aclassData_html"><div class="ttname"><a href="classData.html">Data</a></div><div class="ttdoc">Data do calendario.</div><div class="ttdef"><b>Definição</b> <a href="data_8h_source.html#l00014">data.h:14</a></div></div>
+<div class="ttc" id="aclassDinheiro_html"><div class="ttname"><a href="classDinheiro.html">Dinheiro</a></div><div class="ttdoc">Valor guardado em centavos.</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8h_source.html#l00017">dinheiro.h:17</a></div></div>
+<div class="ttc" id="aclassLoteEstoque_html"><div class="ttname"><a href="classLoteEstoque.html">LoteEstoque</a></div><div class="ttdoc">Lote de um produto.</div><div class="ttdef"><b>Definição</b> <a href="lote_8h_source.html#l00016">lote.h:16</a></div></div>
+<div class="ttc" id="aclassLoteEstoque_html_a195107dcb3ab8b96fea1b3b1f224c454"><div class="ttname"><a href="classLoteEstoque.html#a195107dcb3ab8b96fea1b3b1f224c454">LoteEstoque::vencido</a></div><div class="ttdeci">bool vencido(const Data &amp;hoje) const</div><div class="ttdoc">Diz se o lote ja venceu.</div><div class="ttdef"><b>Definição</b> <a href="lote_8cpp_source.html#l00034">lote.cpp:34</a></div></div>
+<div class="ttc" id="aclassLoteEstoque_html_a68467e34f015214c11d42888b4977e72"><div class="ttname"><a href="classLoteEstoque.html#a68467e34f015214c11d42888b4977e72">LoteEstoque::idUnidade</a></div><div class="ttdeci">int idUnidade() const</div><div class="ttdef"><b>Definição</b> <a href="lote_8cpp_source.html#l00027">lote.cpp:27</a></div></div>
+<div class="ttc" id="aclassLoteEstoque_html_ab86ac8ebc9cc7757417364ea4a332213"><div class="ttname"><a href="classLoteEstoque.html#ab86ac8ebc9cc7757417364ea4a332213">LoteEstoque::codigoProduto</a></div><div class="ttdeci">const std::string &amp; codigoProduto() const</div><div class="ttdef"><b>Definição</b> <a href="lote_8cpp_source.html#l00028">lote.cpp:28</a></div></div>
+<div class="ttc" id="aclassLoteEstoque_html_acb85e61fccf8e221abcf115b2bfb3717"><div class="ttname"><a href="classLoteEstoque.html#acb85e61fccf8e221abcf115b2bfb3717">LoteEstoque::saldo</a></div><div class="ttdeci">int saldo() const</div><div class="ttdef"><b>Definição</b> <a href="lote_8cpp_source.html#l00030">lote.cpp:30</a></div></div>
+<div class="ttc" id="aclassProduto_html"><div class="ttname"><a href="classProduto.html">Produto</a></div><div class="ttdoc">Produto do catalogo da rede.</div><div class="ttdef"><b>Definição</b> <a href="produto_8h_source.html#l00027">produto.h:27</a></div></div>
+<div class="ttc" id="aclassVenda_html"><div class="ttname"><a href="classVenda.html">Venda</a></div><div class="ttdoc">Venda.</div><div class="ttdef"><b>Definição</b> <a href="venda_8h_source.html#l00017">venda.h:17</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

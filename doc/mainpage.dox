@@ -1,0 +1,24 @@
+/**
+@mainpage Bom-Preco
+
+Sistema de controle de estoque e vendas por lote da rede Bom-Preco.
+
+@section uml Diagrama de classes (UML)
+
+Visao geral de todas as classes do sistema e de como elas se relacionam:
+- <b>losango cheio</b>: composicao (o objeto faz parte do outro e e copiado junto);
+- <b>losango vazio</b>: associacao por ponteiro (o servico usa o Banco e a Sessao, mas nao e dono deles);
+- <b>seta tracejada</b>: dependencia (usa, retorna ou consulta).
+
+Todas as classes concretas seguem a forma canonica (construtor padrao,
+construtor de copia, operador de atribuicao e destrutor); esses membros
+foram omitidos do diagrama para facilitar a leitura.
+
+@dotfile uml.dot "Diagrama de classes do Bom-Preco"
+
+@section dependencias Dependencias entre arquivos
+
+O grafo de inclusoes completo do sistema aparece na pagina do arquivo
+main.cpp (menu Arquivos). Cada arquivo .h tambem mostra quem ele inclui
+e quem o inclui.
+*/

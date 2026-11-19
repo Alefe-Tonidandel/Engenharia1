@@ -1,0 +1,7 @@
+<map id="Venda" name="Venda">
+<area shape="rect" id="Node000001" title="Venda." alt="" coords="67,353,199,719"/>
+<area shape="rect" id="Node000002" href="$classDinheiro.html" title="Valor guardado em centavos." alt="" coords="5,25,121,271"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,270,97,329,98,337,93,338,91,330,81,271"/>
+<area shape="rect" id="Node000003" href="$classData.html" title="Data do calendario." alt="" coords="145,5,261,291"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,291,177,330,175,337,170,336,171,329,178,290"/>
+</map>

@@ -1,0 +1,117 @@
+digraph UML {
+  graph [rankdir=TB, fontname="Helvetica", nodesep=0.5, ranksep=0.8];
+  node  [shape=plaintext, fontname="Helvetica", fontsize=10];
+  edge  [fontname="Helvetica", fontsize=9];
+
+  Banco [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Banco</b></td></tr>
+    <tr><td align="left">- produtos_ : vector&lt;Produto&gt;<br align="left"/>- lotes_ : vector&lt;LoteEstoque&gt;<br align="left"/>- vendas_ : vector&lt;Venda&gt;<br align="left"/>- proximoIdLote_ : int<br align="left"/>- proximoIdVenda_ : int<br align="left"/></td></tr>
+    <tr><td align="left">+ buscarProduto(codigo) : Produto*<br align="left"/>+ adicionarProduto(p)<br align="left"/>+ produtos() : vector&lt;Produto&gt;<br align="left"/>+ adicionarLote(...) : LoteEstoque<br align="left"/>+ buscarLote(id) : LoteEstoque*<br align="left"/>+ saldoValido(unidade, codigo, hoje) : int<br align="left"/>+ adicionarVenda(...) : Venda<br align="left"/>+ lotes() / vendas()<br align="left"/></td></tr></table>>];
+
+  Produto [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Produto</b></td></tr>
+    <tr><td align="left">- codigo_, nome_, categoria_ : string<br align="left"/>- custo_, preco_ : Dinheiro<br align="left"/>- estoqueMinimo_ : int<br align="left"/></td></tr>
+    <tr><td align="left">+ temPreco() : bool<br align="left"/>+ setPreco(preco)<br align="left"/>+ getters<br align="left"/></td></tr></table>>];
+
+  DadosProduto [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#eeeeee">«struct»<br/><b>DadosProduto</b></td></tr>
+    <tr><td align="left">+ codigo, nome, categoria : string<br align="left"/>+ custo : Dinheiro<br align="left"/>+ estoqueMinimo : int<br align="left"/></td></tr></table>>];
+
+  LoteEstoque [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>LoteEstoque</b></td></tr>
+    <tr><td align="left">- id_, idUnidade_ : int<br align="left"/>- codigoProduto_ : string<br align="left"/>- quantidadeInicial_, saldo_ : int<br align="left"/>- dataEntrada_, validade_ : Data<br align="left"/></td></tr>
+    <tr><td align="left">+ vencido(hoje) : bool<br align="left"/>+ baixar(quantidade)<br align="left"/>+ getters<br align="left"/></td></tr></table>>];
+
+  Venda [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Venda</b></td></tr>
+    <tr><td align="left">- id_, idUnidade_, idUsuario_ : int<br align="left"/>- codigoProduto_ : string<br align="left"/>- quantidade_ : int<br align="left"/>- valorTotal_ : Dinheiro<br align="left"/>- data_ : Data<br align="left"/></td></tr>
+    <tr><td align="left">+ getters<br align="left"/></td></tr></table>>];
+
+  Dinheiro [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Dinheiro</b></td></tr>
+    <tr><td align="left">- centavos_ : int64_t<br align="left"/></td></tr>
+    <tr><td align="left">+ reais(r) : Dinheiro  «static»<br align="left"/>+ centavos() : int64_t<br align="left"/>+ operator*, operator&lt;, operator==<br align="left"/></td></tr></table>>];
+
+  Data [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Data</b></td></tr>
+    <tr><td align="left">- ano_, mes_, dia_ : int<br align="left"/></td></tr>
+    <tr><td align="left">+ ano(), mes(), dia() : int<br align="left"/>+ operator&lt;, operator==<br align="left"/></td></tr></table>>];
+
+  Relogio [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Relogio</b></td></tr>
+    <tr><td align="left">+ hoje() : Data  «static»<br align="left"/>+ fixar(d)  «static»<br align="left"/></td></tr></table>>];
+
+  Usuario [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Usuario</b></td></tr>
+    <tr><td align="left">- id_, idUnidade_ : int<br align="left"/>- nome_ : string<br align="left"/>- perfil_ : Perfil<br align="left"/></td></tr>
+    <tr><td align="left">+ getters<br align="left"/></td></tr></table>>];
+
+  Sessao [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>Sessao</b></td></tr>
+    <tr><td align="left">- usuario_ : Usuario<br align="left"/></td></tr>
+    <tr><td align="left">+ usuario() : Usuario<br align="left"/></td></tr></table>>];
+
+  ServicoCadastros [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#f9e3c6"><b>ServicoCadastros</b></td></tr>
+    <tr><td align="left">- sessao_ : const Sessao*<br align="left"/>- banco_ : Banco*<br align="left"/></td></tr>
+    <tr><td align="left">+ cadastrarProduto(dados) : Resultado&lt;Produto&gt;<br align="left"/>+ definirPrecoPadrao(codigo, preco) : Resultado&lt;Produto&gt;<br align="left"/>- podeGerirCatalogo() : bool<br align="left"/></td></tr></table>>];
+
+  ServicoEstoque [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#f9e3c6"><b>ServicoEstoque</b></td></tr>
+    <tr><td align="left">- sessao_ : const Sessao*<br align="left"/>- banco_ : Banco*<br align="left"/></td></tr>
+    <tr><td align="left">+ registrarEntrada(codigo, qtd, validade) : Resultado&lt;LoteEstoque&gt;<br align="left"/>+ registrarVenda(codigo, qtd) : Resultado&lt;Venda&gt;<br align="left"/>+ consultarEstoque(filtro) : Resultado&lt;vector&lt;ItemEstoque&gt;&gt;<br align="left"/></td></tr></table>>];
+
+  Resultado [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#eeeeee">«struct template»<br/><b>Resultado&lt;T&gt;</b></td></tr>
+    <tr><td align="left">+ valor : T<br align="left"/>+ erro : Erro<br align="left"/>+ mensagem : string<br align="left"/></td></tr>
+    <tr><td align="left">+ ok() : bool<br align="left"/>+ sucesso(v)  «static»<br align="left"/>+ falha(e, msg)  «static»<br align="left"/></td></tr></table>>];
+
+  Perfil [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#eeeeee">«enum»<br/><b>Perfil</b></td></tr>
+    <tr><td align="left">OperadorCaixa<br align="left"/>RepositorEstoque<br align="left"/>GerenteUnidade<br align="left"/>GestorRede<br align="left"/>Administrador<br align="left"/></td></tr></table>>];
+
+  Erro [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#eeeeee">«enum»<br/><b>Erro</b></td></tr>
+    <tr><td align="left">Nenhum, CampoVazio, Duplicado,<br align="left"/>QuantidadeInvalida, CustoInvalido,<br align="left"/>PrecoAbaixoDoCusto, ValidadeVencida,<br align="left"/>ProdutoSemPreco, NaoEncontrado,<br align="left"/>EstoqueInsuficiente,<br align="left"/>UnidadeNaoInformada, AcessoNegado<br align="left"/></td></tr></table>>];
+
+  ItemEstoque [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#dbe7f5"><b>ItemEstoque</b></td></tr>
+    <tr><td align="left">- codigoProduto_, nome_ : string<br align="left"/>- quantidade_, quantidadeVencida_ : int<br align="left"/>- estoqueMinimo_ : int<br align="left"/>- temValidade_ : bool<br align="left"/>- validadeMaisProxima_ : Data<br align="left"/></td></tr>
+    <tr><td align="left">+ abaixoDoMinimo() : bool<br align="left"/>+ getters<br align="left"/></td></tr></table>>];
+
+  FiltroEstoque [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+    <tr><td bgcolor="#eeeeee">«struct»<br/><b>FiltroEstoque</b></td></tr>
+    <tr><td align="left">+ idUnidade : optional&lt;int&gt;<br align="left"/>+ categoria : string<br align="left"/></td></tr></table>>];
+
+  /* composicao (o "todo" tem o losango cheio) */
+  edge [dir=back, arrowtail=diamond, arrowhead=none, style=solid];
+  Banco   -> Produto     [headlabel="0..*", labeldistance=2];
+  Banco   -> LoteEstoque [headlabel="0..*", labeldistance=2];
+  Banco   -> Venda       [headlabel="0..*", labeldistance=2];
+  Produto -> Dinheiro    [label=" custo_, preco_"];
+  Venda   -> Dinheiro    [label=" valorTotal_"];
+  LoteEstoque -> Data    [label=" dataEntrada_, validade_"];
+  Venda   -> Data        [label=" data_"];
+  Sessao  -> Usuario     [label=" usuario_"];
+  ItemEstoque -> Data    [label=" validadeMaisProxima_"];
+
+  /* associacao por ponteiro, sem posse (losango vazio) */
+  edge [dir=back, arrowtail=odiamond, arrowhead=none, style=solid];
+  ServicoCadastros -> Banco  [label=" banco_"];
+  ServicoEstoque   -> Banco  [label=" banco_"];
+  ServicoCadastros -> Sessao [label=" sessao_"];
+  ServicoEstoque   -> Sessao [label=" sessao_"];
+
+  /* dependencia (seta tracejada) */
+  edge [dir=forward, arrowhead=vee, arrowtail=none, style=dashed];
+  ServicoCadastros -> DadosProduto [label=" usa"];
+  ServicoCadastros -> Resultado    [label=" retorna"];
+  ServicoEstoque   -> Resultado    [label=" retorna"];
+  ServicoEstoque   -> Relogio      [label=" consulta"];
+  ServicoEstoque   -> FiltroEstoque [label=" usa"];
+  ServicoEstoque   -> ItemEstoque  [label=" retorna"];
+  Relogio      -> Data;
+  Usuario      -> Perfil;
+  Resultado    -> Erro;
+  DadosProduto -> Dinheiro;
+}

@@ -1,0 +1,5 @@
+<map id="Produto" name="Produto">
+<area shape="rect" id="Node000001" title="Produto do catalogo da rede." alt="" coords="5,328,145,693"/>
+<area shape="rect" id="Node000002" href="$classDinheiro.html" title="Valor guardado em centavos." alt="" coords="17,5,133,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,251,78,311,73,311,73,251"/>
+</map>

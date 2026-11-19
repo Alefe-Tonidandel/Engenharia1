@@ -1,0 +1,41 @@
+<map id="src/servico_cadastros.cpp" name="src/servico_cadastros.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="31,5,221,31"/>
+<area shape="rect" id="Node000002" href="$servico__cadastros_8h.html" title="Declaracao do ServicoCadastros &#45; cadastro de produtos e precos." alt="" coords="51,79,201,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,31,129,65,123,65,123,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="210,372,269,397"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,106,73,131,36,165,22,185,12,206,8,227,12,250,26,276,46,298,69,317,94,334,148,358,197,372,195,377,146,363,92,338,65,322,42,302,22,279,7,252,3,228,7,204,17,182,32,161,70,126,105,102"/>
+<area shape="rect" id="Node000004" href="$tipos_8h.html" title="Tipos comuns do sistema: perfis, cod de erro e Resultado." alt="" coords="22,225,89,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="114,106,93,127,75,153,65,183,60,212,54,211,59,182,70,151,89,123,110,102"/>
+<area shape="rect" id="Node000005" href="$usuario_8h.html" title="Declaracao das classes Usuario e Sessao." alt="" coords="85,152,167,177"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="129,104,129,138,123,138,123,104"/>
+<area shape="rect" id="Node000006" href="$produto_8h.html" title="Declaracao da classe Produto e da struct DadosProduto." alt="" coords="164,225,248,251"/>
+<area shape="poly" id="edge8_Node000002_Node000006" title=" " alt="" coords="141,102,162,123,182,151,195,182,204,211,199,213,190,183,177,153,158,127,137,106"/>
+<area shape="rect" id="Node000010" href="$banco_8h.html" title="Declaração da classe Banco, que guarda produtos, lotes e vendas em memoria." alt="" coords="283,152,356,177"/>
+<area shape="poly" id="edge13_Node000002_Node000010" title=" " alt="" coords="158,102,276,145,274,150,156,107"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="62,249,80,285,93,305,109,322,153,350,198,369,196,374,150,355,106,326,89,308,75,287,57,252"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="131,177,140,210,155,250,190,311,224,360,220,363,185,313,150,252,135,212,126,179"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="116,180,78,218,74,214,112,176"/>
+<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="211,251,236,358,231,359,206,252"/>
+<area shape="rect" id="Node000007" href="$dinheiro_8h.html" title="Declaracao da classe Dinheiro, que guarda valores em centavos." alt="" coords="495,299,581,324"/>
+<area shape="poly" id="edge10_Node000006_Node000007" title=" " alt="" coords="249,246,482,295,481,301,247,251"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="505,372,571,397"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="541,324,541,358,535,358,535,324"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="399,372,479,397"/>
+<area shape="poly" id="edge12_Node000007_Node000009" title=" " alt="" coords="524,326,468,366,465,362,521,322"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="317,179,251,360,246,358,312,177"/>
+<area shape="poly" id="edge16_Node000010_Node000006" title=" " alt="" coords="302,180,237,220,234,216,300,175"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="505,225,568,251"/>
+<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="355,175,493,220,491,225,353,180"/>
+<area shape="rect" id="Node000012" href="$lote_8h.html" title="Declaração da classe LoteEstoque." alt="" coords="323,225,382,251"/>
+<area shape="poly" id="edge17_Node000010_Node000012" title=" " alt="" coords="327,177,344,212,339,214,322,179"/>
+<area shape="rect" id="Node000014" href="$venda_8h.html" title="Declaracao da classe Venda." alt="" coords="406,225,481,251"/>
+<area shape="poly" id="edge22_Node000010_Node000014" title=" " alt="" coords="341,175,413,216,410,221,338,180"/>
+<area shape="poly" id="edge18_Node000012_Node000003" title=" " alt="" coords="346,253,289,326,260,363,255,359,285,322,342,249"/>
+<area shape="rect" id="Node000013" href="$data_8h.html" title="Declaração das classes Data e Relogio." alt="" coords="408,299,471,324"/>
+<area shape="poly" id="edge19_Node000012_Node000013" title=" " alt="" coords="368,249,416,288,413,292,365,253"/>
+<area shape="poly" id="edge20_Node000013_Node000003" title=" " alt="" coords="408,326,283,371,281,366,407,321"/>
+<area shape="poly" id="edge21_Node000013_Node000009" title=" " alt="" coords="442,324,442,358,437,358,437,324"/>
+<area shape="poly" id="edge23_Node000014_Node000003" title=" " alt="" coords="428,253,268,366,265,362,425,249"/>
+<area shape="poly" id="edge25_Node000014_Node000007" title=" " alt="" coords="460,249,513,288,510,292,457,253"/>
+<area shape="poly" id="edge24_Node000014_Node000013" title=" " alt="" coords="445,251,443,285,438,285,440,251"/>
+</map>

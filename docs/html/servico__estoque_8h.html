@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bom-Preco: Referência do Arquivo src/servico_estoque.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Bom-Preco
+   </div>
+   <div id="projectbrief">Controle de estoque e vendas por lote</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Componentes</a>  </div>
+  <div class="headertitle"><div class="title">Referência do Arquivo servico_estoque.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Declaracao do <a class="el" href="classServicoEstoque.html" title="Servico de estoque.">ServicoEstoque</a> - entrada de lotes e vendas.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="tipos_8h_source.html">tipos.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="usuario_8h_source.html">usuario.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="banco_8h_source.html">banco.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="item__estoque_8h_source.html">item_estoque.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependência de inclusões para servico_estoque.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="servico__estoque_8h__incl.png" border="0" usemap="#asrc_2servico__estoque_8h" alt=""/></div>
+<map name="asrc_2servico__estoque_8h" id="asrc_2servico__estoque_8h">
+<area shape="rect" title="Declaracao do ServicoEstoque &#45; entrada de lotes e vendas." alt="" coords="403,5,566,31"/>
+<area shape="rect" title=" " alt="" coords="366,299,425,324"/>
+<area shape="poly" title=" " alt="" coords="484,32,418,251,406,287,401,285,413,250,479,30"/>
+<area shape="rect" title=" " alt="" coords="5,152,68,177"/>
+<area shape="poly" title=" " alt="" coords="424,33,334,53,235,81,147,115,73,148,71,144,145,110,233,76,333,48,423,28"/>
+<area shape="rect" href="tipos_8h.html" title="Tipos comuns do sistema: perfis, cod de erro e Resultado." alt="" coords="534,152,601,177"/>
+<area shape="poly" title=" " alt="" coords="519,28,553,47,568,61,580,77,586,93,587,109,580,139,575,138,581,109,580,94,576,80,564,64,550,52,516,33"/>
+<area shape="rect" href="usuario_8h.html" title="Declaracao das classes Usuario e Sessao." alt="" coords="483,79,566,104"/>
+<area shape="poly" title=" " alt="" coords="494,30,514,65,509,68,489,32"/>
+<area shape="rect" href="banco_8h.html" title="Declaração da classe Banco, que guarda produtos, lotes e vendas em memoria." alt="" coords="247,79,320,104"/>
+<area shape="poly" title=" " alt="" coords="453,33,330,77,328,71,451,28"/>
+<area shape="rect" href="item__estoque_8h.html" title="Declaracao da struct FiltroEstoque e da classe ItemEstoque usanas na consulta de estoque." alt="" coords="625,152,747,177"/>
+<area shape="poly" title=" " alt="" coords="514,28,556,49,601,77,638,108,669,140,665,143,635,112,598,81,553,54,511,33"/>
+<area shape="poly" title=" " alt="" coords="565,179,547,214,517,253,479,280,439,298,436,294,476,275,513,249,543,212,560,177"/>
+<area shape="poly" title=" " alt="" coords="525,105,507,170,490,212,467,252,448,274,426,292,423,288,444,270,462,249,485,210,502,169,520,104"/>
+<area shape="poly" title=" " alt="" coords="534,103,556,139,551,142,529,106"/>
+<area shape="poly" title=" " alt="" coords="312,102,344,121,372,150,388,185,396,221,400,285,394,285,391,222,383,186,368,154,341,125,309,106"/>
+<area shape="poly" title=" " alt="" coords="247,106,82,153,81,148,246,101"/>
+<area shape="rect" href="produto_8h.html" title="Declaracao da classe Produto e da struct DadosProduto." alt="" coords="92,152,176,177"/>
+<area shape="poly" title=" " alt="" coords="260,106,172,148,170,144,258,102"/>
+<area shape="rect" href="lote_8h.html" title="Declaração da classe LoteEstoque." alt="" coords="299,152,358,177"/>
+<area shape="poly" title=" " alt="" coords="293,103,316,139,312,142,289,106"/>
+<area shape="rect" href="venda_8h.html" title="Declaracao da classe Venda." alt="" coords="201,152,275,177"/>
+<area shape="poly" title=" " alt="" coords="278,106,255,142,250,139,274,103"/>
+<area shape="poly" title=" " alt="" coords="145,176,175,211,219,248,253,266,288,280,353,299,352,304,286,285,250,271,217,253,171,215,140,179"/>
+<area shape="rect" href="dinheiro_8h.html" title="Declaracao da classe Dinheiro, que guarda valores em centavos." alt="" coords="31,225,117,251"/>
+<area shape="poly" title=" " alt="" coords="126,179,95,217,90,213,122,176"/>
+<area shape="rect" title=" " alt="" coords="41,299,107,324"/>
+<area shape="poly" title=" " alt="" coords="77,251,77,285,71,285,71,251"/>
+<area shape="rect" title=" " alt="" coords="183,299,263,324"/>
+<area shape="poly" title=" " alt="" coords="99,248,188,290,185,295,97,253"/>
+<area shape="poly" title=" " alt="" coords="337,177,387,285,382,287,332,179"/>
+<area shape="rect" href="data_8h.html" title="Declaração das classes Data e Relogio." alt="" coords="244,225,307,251"/>
+<area shape="poly" title=" " alt="" coords="322,179,294,216,290,213,318,176"/>
+<area shape="poly" title=" " alt="" coords="296,248,365,289,362,294,293,253"/>
+<area shape="poly" title=" " alt="" coords="269,253,242,289,238,286,265,249"/>
+<area shape="poly" title=" " alt="" coords="235,178,226,213,227,232,234,249,258,273,288,289,321,300,353,305,352,310,320,305,286,294,255,277,229,252,221,233,221,212,230,177"/>
+<area shape="poly" title=" " alt="" coords="213,180,114,222,112,217,211,175"/>
+<area shape="poly" title=" " alt="" coords="247,176,265,212,261,215,242,179"/>
+<area shape="poly" title=" " alt="" coords="671,180,616,214,546,253,439,298,437,293,544,248,613,210,668,175"/>
+<area shape="poly" title=" " alt="" coords="625,179,321,232,320,226,624,174"/>
+<area shape="rect" title=" " alt="" coords="649,225,723,251"/>
+<area shape="poly" title=" " alt="" coords="689,178,689,212,683,212,683,178"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Este grafo mostra quais arquivos estão direta ou indiretamente relacionados com esse arquivo:</div>
+<div class="dyncontent">
+<div class="center"><img src="servico__estoque_8h__dep__incl.png" border="0" usemap="#asrc_2servico__estoque_8hdep" alt=""/></div>
+<map name="asrc_2servico__estoque_8hdep" id="asrc_2servico__estoque_8hdep">
+<area shape="rect" title="Declaracao do ServicoEstoque &#45; entrada de lotes e vendas." alt="" coords="59,5,222,31"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="5,79,111,104"/>
+<area shape="poly" title=" " alt="" coords="119,42,73,80,70,76,115,38"/>
+<area shape="rect" href="servico__estoque_8cpp.html" title=" " alt="" coords="135,79,314,104"/>
+<area shape="poly" title=" " alt="" coords="166,38,213,76,209,80,163,42"/>
+</map>
+</div>
+</div>
+<p><a href="servico__estoque_8h_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Componentes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServicoEstoque.html">ServicoEstoque</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Servico de estoque.  <a href="classServicoEstoque.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Declaracao do <a class="el" href="classServicoEstoque.html" title="Servico de estoque.">ServicoEstoque</a> - entrada de lotes e vendas. </p>
+
+<p class="definition">Definição no arquivo <a class="el" href="servico__estoque_8h_source.html">servico_estoque.h</a>.</p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

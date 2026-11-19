@@ -1,0 +1,39 @@
+<map id="src/servico_cadastros.h" name="src/servico_cadastros.h">
+<area shape="rect" id="Node000001" title="Declaracao do ServicoCadastros &#45; cadastro de produtos e precos." alt="" coords="39,5,213,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="210,299,269,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,33,73,57,36,92,22,111,12,132,8,154,12,176,26,202,46,225,69,244,94,260,148,284,197,299,195,304,146,289,92,265,65,248,42,229,22,205,7,178,3,154,7,131,17,109,32,88,70,53,105,29"/>
+<area shape="rect" id="Node000003" href="$tipos_8h.html" title="Tipos comuns do sistema: perfis, cod de erro e Resultado." alt="" coords="22,152,89,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,33,93,54,75,80,65,110,60,139,54,138,59,108,70,77,89,50,110,29"/>
+<area shape="rect" id="Node000004" href="$usuario_8h.html" title="Declaracao das classes Usuario e Sessao." alt="" coords="85,79,167,104"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="129,31,129,65,123,65,123,31"/>
+<area shape="rect" id="Node000005" href="$produto_8h.html" title="Declaracao da classe Produto e da struct DadosProduto." alt="" coords="164,152,248,177"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="141,29,162,50,182,77,195,108,204,138,199,139,190,110,177,80,158,54,137,33"/>
+<area shape="rect" id="Node000009" href="$banco_8h.html" title="Declaração da classe Banco, que guarda produtos, lotes e vendas em memoria." alt="" coords="283,79,356,104"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="158,28,276,71,274,76,156,33"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="62,176,80,211,93,231,109,249,153,277,198,296,196,301,150,282,106,253,89,235,75,214,57,179"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="131,104,140,137,155,176,190,237,224,286,220,289,185,240,150,178,135,139,126,105"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="116,106,78,144,74,140,112,102"/>
+<area shape="poly" id="edge8_Node000005_Node000002" title=" " alt="" coords="211,177,236,285,231,286,206,178"/>
+<area shape="rect" id="Node000006" href="$dinheiro_8h.html" title="Declaracao da classe Dinheiro, que guarda valores em centavos." alt="" coords="495,225,581,251"/>
+<area shape="poly" id="edge9_Node000005_Node000006" title=" " alt="" coords="249,172,482,222,481,227,247,178"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="505,299,571,324"/>
+<area shape="poly" id="edge10_Node000006_Node000007" title=" " alt="" coords="541,251,541,285,535,285,535,251"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="399,299,479,324"/>
+<area shape="poly" id="edge11_Node000006_Node000008" title=" " alt="" coords="524,253,468,293,465,288,521,249"/>
+<area shape="poly" id="edge13_Node000009_Node000002" title=" " alt="" coords="317,105,251,287,246,285,312,103"/>
+<area shape="poly" id="edge15_Node000009_Node000005" title=" " alt="" coords="302,106,237,147,234,142,300,102"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="505,152,568,177"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="355,101,493,146,491,151,353,107"/>
+<area shape="rect" id="Node000011" href="$lote_8h.html" title="Declaração da classe LoteEstoque." alt="" coords="323,152,382,177"/>
+<area shape="poly" id="edge16_Node000009_Node000011" title=" " alt="" coords="327,103,344,139,339,141,322,105"/>
+<area shape="rect" id="Node000013" href="$venda_8h.html" title="Declaracao da classe Venda." alt="" coords="406,152,481,177"/>
+<area shape="poly" id="edge21_Node000009_Node000013" title=" " alt="" coords="341,102,413,143,410,147,338,106"/>
+<area shape="poly" id="edge17_Node000011_Node000002" title=" " alt="" coords="346,179,289,252,260,289,255,286,285,249,342,176"/>
+<area shape="rect" id="Node000012" href="$data_8h.html" title="Declaração das classes Data e Relogio." alt="" coords="408,225,471,251"/>
+<area shape="poly" id="edge18_Node000011_Node000012" title=" " alt="" coords="368,175,416,214,413,219,365,179"/>
+<area shape="poly" id="edge19_Node000012_Node000002" title=" " alt="" coords="408,253,283,297,281,292,407,248"/>
+<area shape="poly" id="edge20_Node000012_Node000008" title=" " alt="" coords="442,251,442,285,437,285,437,251"/>
+<area shape="poly" id="edge22_Node000013_Node000002" title=" " alt="" coords="428,180,268,293,265,288,425,175"/>
+<area shape="poly" id="edge24_Node000013_Node000006" title=" " alt="" coords="460,175,513,215,510,219,457,179"/>
+<area shape="poly" id="edge23_Node000013_Node000012" title=" " alt="" coords="445,178,443,212,438,212,440,178"/>
+</map>

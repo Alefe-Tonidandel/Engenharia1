@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bom-Preco: Código-Fonte de src/data.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Bom-Preco
+   </div>
+   <div id="projectbrief">Controle de estoque e vendas por lote</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">data.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="data_8cpp.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="data_8h.html">data.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classData.html#af11f741cb7f587e2e495452a8905a22a">    5</a></span><a class="code hl_function" href="classData.html#af11f741cb7f587e2e495452a8905a22a">Data::Data</a>() : ano_(1970), mes_(1), dia_(1) {}</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classData.html#a54e6811db5ae16cf9796802891bf2e53">    6</a></span><a class="code hl_function" href="classData.html#af11f741cb7f587e2e495452a8905a22a">Data::Data</a>(<span class="keywordtype">int</span> ano, <span class="keywordtype">int</span> mes, <span class="keywordtype">int</span> dia) : ano_(ano), mes_(mes), dia_(dia) {}</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classData.html#a41a1f76350af4ab746f5e37f4eff8035">    7</a></span><a class="code hl_function" href="classData.html#af11f741cb7f587e2e495452a8905a22a">Data::Data</a>(<span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; o) : ano_(o.ano_), mes_(o.mes_), dia_(o.dia_) {}</div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classData.html#a6d020e6316811ad414f45dcdd9aaef63">    8</a></span><a class="code hl_class" href="classData.html">Data</a>&amp; <a class="code hl_function" href="classData.html#a6d020e6316811ad414f45dcdd9aaef63">Data::operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; o) {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;o) { <a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a> = o.<a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a>; <a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a> = o.<a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a>; <a class="code hl_variable" href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">dia_</a> = o.<a class="code hl_variable" href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">dia_</a>; }</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
+</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classData.html#aab31956423290f0d62dcca47ab4d16dd">   12</a></span><a class="code hl_function" href="classData.html#aab31956423290f0d62dcca47ab4d16dd">Data::~Data</a>() {}</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classData.html#aec67a5beec91d9d267f4450cf6acccdc">   14</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classData.html#aec67a5beec91d9d267f4450cf6acccdc">Data::ano</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a>; }</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classData.html#a8494488896c98dbd5455846e51a14d2f">   15</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classData.html#a8494488896c98dbd5455846e51a14d2f">Data::mes</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a>; }</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classData.html#a26610b666073a10b97d38edb1569bac3">   16</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classData.html#a26610b666073a10b97d38edb1569bac3">Data::dia</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">dia_</a>; }</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classData.html#ad41aaeeaacd0af12586e9e58633cd2e8">   18</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classData.html#ad41aaeeaacd0af12586e9e58633cd2e8">Data::operator&lt;</a>(<span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; o)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a> != o.<a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a>) <span class="keywordflow">return</span> <a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a> &lt; o.<a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a> != o.<a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a>) <span class="keywordflow">return</span> <a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a> &lt; o.<a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">dia_</a> &lt; o.<a class="code hl_variable" href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">dia_</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
+</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classData.html#ae0469156e2e616cb2e3f3ad117ab3601">   23</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classData.html#ae0469156e2e616cb2e3f3ad117ab3601">Data::operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; o)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a> == o.<a class="code hl_variable" href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">ano_</a> &amp;&amp; <a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a> == o.<a class="code hl_variable" href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">mes_</a> &amp;&amp; <a class="code hl_variable" href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">dia_</a> == o.<a class="code hl_variable" href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">dia_</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="data_8cpp.html#aff2d0b1edeae57e464b091a7743ab391">   27</a></span>std::ostream&amp; <a class="code hl_function" href="data_8cpp.html#aff2d0b1edeae57e464b091a7743ab391">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; d) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">char</span> antes = os.fill(<span class="charliteral">&#39;0&#39;</span>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    os &lt;&lt; std::setw(2) &lt;&lt; d.<a class="code hl_function" href="classData.html#a26610b666073a10b97d38edb1569bac3">dia</a>() &lt;&lt; <span class="charliteral">&#39;/&#39;</span> &lt;&lt; std::setw(2) &lt;&lt; d.<a class="code hl_function" href="classData.html#a8494488896c98dbd5455846e51a14d2f">mes</a>()</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>       &lt;&lt; <span class="charliteral">&#39;/&#39;</span> &lt;&lt; d.<a class="code hl_function" href="classData.html#aec67a5beec91d9d267f4450cf6acccdc">ano</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    os.fill(antes);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">//Relogio </span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="data_8cpp.html#ab4f6179148982fb8a65a885d1fc8ba5e">   36</a></span><span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="data_8cpp.html#ab4f6179148982fb8a65a885d1fc8ba5e">fixada_</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="data_8cpp.html#a45c67105d10cdec5147815b68409540d">   37</a></span><span class="keyword">static</span> <a class="code hl_class" href="classData.html">Data</a> <a class="code hl_variable" href="data_8cpp.html#a45c67105d10cdec5147815b68409540d">dataFixa_</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classRelogio.html#ac568f31c670cd40e28703fdffe8d91c9">   39</a></span><a class="code hl_class" href="classData.html">Data</a> <a class="code hl_function" href="classRelogio.html#ac568f31c670cd40e28703fdffe8d91c9">Relogio::hoje</a>() {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="data_8cpp.html#ab4f6179148982fb8a65a885d1fc8ba5e">fixada_</a>) <span class="keywordflow">return</span> <a class="code hl_variable" href="data_8cpp.html#a45c67105d10cdec5147815b68409540d">dataFixa_</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::time_t t = std::time(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::tm* l = std::localtime(&amp;t);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classData.html">Data</a>(l-&gt;tm_year + 1900, l-&gt;tm_mon + 1, l-&gt;tm_mday);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classRelogio.html#accdb955fdee0d7c1a36505c81fb3d150">   45</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classRelogio.html#accdb955fdee0d7c1a36505c81fb3d150">Relogio::fixar</a>(<span class="keyword">const</span> <a class="code hl_class" href="classData.html">Data</a>&amp; d) { <a class="code hl_variable" href="data_8cpp.html#a45c67105d10cdec5147815b68409540d">dataFixa_</a> = d; <a class="code hl_variable" href="data_8cpp.html#ab4f6179148982fb8a65a885d1fc8ba5e">fixada_</a> = <span class="keyword">true</span>; }</div>
+<div class="ttc" id="aclassData_html"><div class="ttname"><a href="classData.html">Data</a></div><div class="ttdoc">Data do calendario.</div><div class="ttdef"><b>Definição</b> <a href="data_8h_source.html#l00014">data.h:14</a></div></div>
+<div class="ttc" id="aclassData_html_a0428c4b183c771500fbee1f3d5ec8d37"><div class="ttname"><a href="classData.html#a0428c4b183c771500fbee1f3d5ec8d37">Data::ano_</a></div><div class="ttdeci">int ano_</div><div class="ttdef"><b>Definição</b> <a href="data_8h_source.html#l00036">data.h:36</a></div></div>
+<div class="ttc" id="aclassData_html_a2585a93ef6839bdb4abc6924ad8cce53"><div class="ttname"><a href="classData.html#a2585a93ef6839bdb4abc6924ad8cce53">Data::dia_</a></div><div class="ttdeci">int dia_</div><div class="ttdef"><b>Definição</b> <a href="data_8h_source.html#l00036">data.h:36</a></div></div>
+<div class="ttc" id="aclassData_html_a26610b666073a10b97d38edb1569bac3"><div class="ttname"><a href="classData.html#a26610b666073a10b97d38edb1569bac3">Data::dia</a></div><div class="ttdeci">int dia() const</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00016">data.cpp:16</a></div></div>
+<div class="ttc" id="aclassData_html_a6ae9ca8ed89367d6c0d329f55c327bb7"><div class="ttname"><a href="classData.html#a6ae9ca8ed89367d6c0d329f55c327bb7">Data::mes_</a></div><div class="ttdeci">int mes_</div><div class="ttdef"><b>Definição</b> <a href="data_8h_source.html#l00036">data.h:36</a></div></div>
+<div class="ttc" id="aclassData_html_a6d020e6316811ad414f45dcdd9aaef63"><div class="ttname"><a href="classData.html#a6d020e6316811ad414f45dcdd9aaef63">Data::operator=</a></div><div class="ttdeci">Data &amp; operator=(const Data &amp;o)</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00008">data.cpp:8</a></div></div>
+<div class="ttc" id="aclassData_html_a8494488896c98dbd5455846e51a14d2f"><div class="ttname"><a href="classData.html#a8494488896c98dbd5455846e51a14d2f">Data::mes</a></div><div class="ttdeci">int mes() const</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00015">data.cpp:15</a></div></div>
+<div class="ttc" id="aclassData_html_aab31956423290f0d62dcca47ab4d16dd"><div class="ttname"><a href="classData.html#aab31956423290f0d62dcca47ab4d16dd">Data::~Data</a></div><div class="ttdeci">~Data()</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00012">data.cpp:12</a></div></div>
+<div class="ttc" id="aclassData_html_ad41aaeeaacd0af12586e9e58633cd2e8"><div class="ttname"><a href="classData.html#ad41aaeeaacd0af12586e9e58633cd2e8">Data::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Data &amp;o) const</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00018">data.cpp:18</a></div></div>
+<div class="ttc" id="aclassData_html_ae0469156e2e616cb2e3f3ad117ab3601"><div class="ttname"><a href="classData.html#ae0469156e2e616cb2e3f3ad117ab3601">Data::operator==</a></div><div class="ttdeci">bool operator==(const Data &amp;o) const</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00023">data.cpp:23</a></div></div>
+<div class="ttc" id="aclassData_html_aec67a5beec91d9d267f4450cf6acccdc"><div class="ttname"><a href="classData.html#aec67a5beec91d9d267f4450cf6acccdc">Data::ano</a></div><div class="ttdeci">int ano() const</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00014">data.cpp:14</a></div></div>
+<div class="ttc" id="aclassData_html_af11f741cb7f587e2e495452a8905a22a"><div class="ttname"><a href="classData.html#af11f741cb7f587e2e495452a8905a22a">Data::Data</a></div><div class="ttdeci">Data()</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00005">data.cpp:5</a></div></div>
+<div class="ttc" id="aclassRelogio_html_ac568f31c670cd40e28703fdffe8d91c9"><div class="ttname"><a href="classRelogio.html#ac568f31c670cd40e28703fdffe8d91c9">Relogio::hoje</a></div><div class="ttdeci">static Data hoje()</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00039">data.cpp:39</a></div></div>
+<div class="ttc" id="aclassRelogio_html_accdb955fdee0d7c1a36505c81fb3d150"><div class="ttname"><a href="classRelogio.html#accdb955fdee0d7c1a36505c81fb3d150">Relogio::fixar</a></div><div class="ttdeci">static void fixar(const Data &amp;d)</div><div class="ttdoc">Fixar a data retornada por hoje()</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00045">data.cpp:45</a></div></div>
+<div class="ttc" id="adata_8cpp_html_a45c67105d10cdec5147815b68409540d"><div class="ttname"><a href="data_8cpp.html#a45c67105d10cdec5147815b68409540d">dataFixa_</a></div><div class="ttdeci">static Data dataFixa_</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00037">data.cpp:37</a></div></div>
+<div class="ttc" id="adata_8cpp_html_ab4f6179148982fb8a65a885d1fc8ba5e"><div class="ttname"><a href="data_8cpp.html#ab4f6179148982fb8a65a885d1fc8ba5e">fixada_</a></div><div class="ttdeci">static bool fixada_</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00036">data.cpp:36</a></div></div>
+<div class="ttc" id="adata_8cpp_html_aff2d0b1edeae57e464b091a7743ab391"><div class="ttname"><a href="data_8cpp.html#aff2d0b1edeae57e464b091a7743ab391">operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Data &amp;d)</div><div class="ttdef"><b>Definição</b> <a href="data_8cpp_source.html#l00027">data.cpp:27</a></div></div>
+<div class="ttc" id="adata_8h_html"><div class="ttname"><a href="data_8h.html">data.h</a></div><div class="ttdoc">Declaração das classes Data e Relogio.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

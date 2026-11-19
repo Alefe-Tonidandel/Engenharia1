@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bom-Preco: Referência do Arquivo src/servico_cadastros.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Bom-Preco
+   </div>
+   <div id="projectbrief">Controle de estoque e vendas por lote</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">Definições de Tipos</a>  </div>
+  <div class="headertitle"><div class="title">Referência do Arquivo servico_cadastros.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="servico__cadastros_8h_source.html">servico_cadastros.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependência de inclusões para servico_cadastros.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="servico__cadastros_8cpp__incl.png" border="0" usemap="#asrc_2servico__cadastros_8cpp" alt=""/></div>
+<map name="asrc_2servico__cadastros_8cpp" id="asrc_2servico__cadastros_8cpp">
+<area shape="rect" title=" " alt="" coords="31,5,221,31"/>
+<area shape="rect" href="servico__cadastros_8h.html" title="Declaracao do ServicoCadastros &#45; cadastro de produtos e precos." alt="" coords="51,79,201,104"/>
+<area shape="poly" title=" " alt="" coords="129,31,129,65,123,65,123,31"/>
+<area shape="rect" title=" " alt="" coords="210,372,269,397"/>
+<area shape="poly" title=" " alt="" coords="108,106,73,131,36,165,22,185,12,206,8,227,12,250,26,276,46,298,69,317,94,334,148,358,197,372,195,377,146,363,92,338,65,322,42,302,22,279,7,252,3,228,7,204,17,182,32,161,70,126,105,102"/>
+<area shape="rect" href="tipos_8h.html" title="Tipos comuns do sistema: perfis, cod de erro e Resultado." alt="" coords="22,225,89,251"/>
+<area shape="poly" title=" " alt="" coords="114,106,93,127,75,153,65,183,60,212,54,211,59,182,70,151,89,123,110,102"/>
+<area shape="rect" href="usuario_8h.html" title="Declaracao das classes Usuario e Sessao." alt="" coords="85,152,167,177"/>
+<area shape="poly" title=" " alt="" coords="129,104,129,138,123,138,123,104"/>
+<area shape="rect" href="produto_8h.html" title="Declaracao da classe Produto e da struct DadosProduto." alt="" coords="164,225,248,251"/>
+<area shape="poly" title=" " alt="" coords="141,102,162,123,182,151,195,182,204,211,199,213,190,183,177,153,158,127,137,106"/>
+<area shape="rect" href="banco_8h.html" title="Declaração da classe Banco, que guarda produtos, lotes e vendas em memoria." alt="" coords="283,152,356,177"/>
+<area shape="poly" title=" " alt="" coords="158,102,276,145,274,150,156,107"/>
+<area shape="poly" title=" " alt="" coords="62,249,80,285,93,305,109,322,153,350,198,369,196,374,150,355,106,326,89,308,75,287,57,252"/>
+<area shape="poly" title=" " alt="" coords="131,177,140,210,155,250,190,311,224,360,220,363,185,313,150,252,135,212,126,179"/>
+<area shape="poly" title=" " alt="" coords="116,180,78,218,74,214,112,176"/>
+<area shape="poly" title=" " alt="" coords="211,251,236,358,231,359,206,252"/>
+<area shape="rect" href="dinheiro_8h.html" title="Declaracao da classe Dinheiro, que guarda valores em centavos." alt="" coords="495,299,581,324"/>
+<area shape="poly" title=" " alt="" coords="249,246,482,295,481,301,247,251"/>
+<area shape="rect" title=" " alt="" coords="505,372,571,397"/>
+<area shape="poly" title=" " alt="" coords="541,324,541,358,535,358,535,324"/>
+<area shape="rect" title=" " alt="" coords="399,372,479,397"/>
+<area shape="poly" title=" " alt="" coords="524,326,468,366,465,362,521,322"/>
+<area shape="poly" title=" " alt="" coords="317,179,251,360,246,358,312,177"/>
+<area shape="poly" title=" " alt="" coords="302,180,237,220,234,216,300,175"/>
+<area shape="rect" title=" " alt="" coords="505,225,568,251"/>
+<area shape="poly" title=" " alt="" coords="355,175,493,220,491,225,353,180"/>
+<area shape="rect" href="lote_8h.html" title="Declaração da classe LoteEstoque." alt="" coords="323,225,382,251"/>
+<area shape="poly" title=" " alt="" coords="327,177,344,212,339,214,322,179"/>
+<area shape="rect" href="venda_8h.html" title="Declaracao da classe Venda." alt="" coords="406,225,481,251"/>
+<area shape="poly" title=" " alt="" coords="341,175,413,216,410,221,338,180"/>
+<area shape="poly" title=" " alt="" coords="346,253,289,326,260,363,255,359,285,322,342,249"/>
+<area shape="rect" href="data_8h.html" title="Declaração das classes Data e Relogio." alt="" coords="408,299,471,324"/>
+<area shape="poly" title=" " alt="" coords="368,249,416,288,413,292,365,253"/>
+<area shape="poly" title=" " alt="" coords="408,326,283,371,281,366,407,321"/>
+<area shape="poly" title=" " alt="" coords="442,324,442,358,437,358,437,324"/>
+<area shape="poly" title=" " alt="" coords="428,253,268,366,265,362,425,249"/>
+<area shape="poly" title=" " alt="" coords="460,249,513,288,510,292,457,253"/>
+<area shape="poly" title=" " alt="" coords="445,251,443,285,438,285,440,251"/>
+</map>
+</div>
+</div>
+<p><a href="servico__cadastros_8cpp_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de Tipos</h2></td></tr>
+<tr class="memitem:a7a86363b1d2682937888010c017e67ab" id="r_a7a86363b1d2682937888010c017e67ab"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structResultado.html">Resultado</a>&lt; <a class="el" href="classProduto.html">Produto</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servico__cadastros_8cpp.html#a7a86363b1d2682937888010c017e67ab">ResProduto</a></td></tr>
+<tr class="separator:a7a86363b1d2682937888010c017e67ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Definições dos tipos</h2>
+<a id="a7a86363b1d2682937888010c017e67ab" name="a7a86363b1d2682937888010c017e67ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a86363b1d2682937888010c017e67ab">&#9670;&#160;</a></span>ResProduto</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structResultado.html">Resultado</a>&lt;<a class="el" href="classProduto.html">Produto</a>&gt; <a class="el" href="servico__cadastros_8cpp.html#a7a86363b1d2682937888010c017e67ab">ResProduto</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="servico__cadastros_8cpp_source.html#l00003">3</a> do arquivo <a class="el" href="servico__cadastros_8cpp_source.html">servico_cadastros.cpp</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

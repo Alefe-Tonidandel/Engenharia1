@@ -1,0 +1,5 @@
+<map id="Sessao" name="Sessao">
+<area shape="rect" id="Node000001" title="Abre uma sessao para o usuario logado." alt="" coords="5,353,111,519"/>
+<area shape="rect" id="Node000002" href="$classUsuario.html" title="Funcionario que usa o sistema." alt="" coords="5,5,111,291"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,291,61,337,55,337,55,291"/>
+</map>

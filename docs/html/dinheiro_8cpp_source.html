@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bom-Preco: Código-Fonte de src/dinheiro.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Bom-Preco
+   </div>
+   <div id="projectbrief">Controle de estoque e vendas por lote</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">dinheiro.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dinheiro_8cpp.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="dinheiro_8h.html">dinheiro.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classDinheiro.html#a7529ac8a24b2cca107c06abe1a9d1f74">    5</a></span><a class="code hl_function" href="classDinheiro.html#a7529ac8a24b2cca107c06abe1a9d1f74">Dinheiro::Dinheiro</a>() : centavos_(0) {}</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classDinheiro.html#a9a4623ddc184c901510354964510fb67">    6</a></span><a class="code hl_function" href="classDinheiro.html#a7529ac8a24b2cca107c06abe1a9d1f74">Dinheiro::Dinheiro</a>(int64_t c) : centavos_(c) {}</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classDinheiro.html#af8973cd8e1f3366985533e4f50770298">    7</a></span><a class="code hl_function" href="classDinheiro.html#a7529ac8a24b2cca107c06abe1a9d1f74">Dinheiro::Dinheiro</a>(<span class="keyword">const</span> <a class="code hl_class" href="classDinheiro.html">Dinheiro</a>&amp; o) : centavos_(o.centavos_) {}</div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classDinheiro.html#a6f11a20b74281a61dbd89a10e6bf877f">    8</a></span><a class="code hl_class" href="classDinheiro.html">Dinheiro</a>&amp; <a class="code hl_function" href="classDinheiro.html#a6f11a20b74281a61dbd89a10e6bf877f">Dinheiro::operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classDinheiro.html">Dinheiro</a>&amp; o) {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;o) <a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a> = o.<a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
+</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classDinheiro.html#a8f38091e79ab59b1adcd66489b0df320">   12</a></span><a class="code hl_function" href="classDinheiro.html#a8f38091e79ab59b1adcd66489b0df320">Dinheiro::~Dinheiro</a>() {}</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classDinheiro.html#a2bf3ed8328dddbc2632865cb44deb424">   14</a></span><a class="code hl_class" href="classDinheiro.html">Dinheiro</a> <a class="code hl_function" href="classDinheiro.html#a2bf3ed8328dddbc2632865cb44deb424">Dinheiro::reais</a>(<span class="keywordtype">double</span> r) {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classDinheiro.html#a7529ac8a24b2cca107c06abe1a9d1f74">Dinheiro</a>(<span class="keyword">static_cast&lt;</span>int64_t<span class="keyword">&gt;</span>(std::llround(r * 100.0)));</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
+</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classDinheiro.html#a9b297c399352ed3d6fd6243eef910fa3">   17</a></span>int64_t <a class="code hl_function" href="classDinheiro.html#a9b297c399352ed3d6fd6243eef910fa3">Dinheiro::centavos</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a>; }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classDinheiro.html#a23c0cd8212b41b871807122c944e03cc">   18</a></span><a class="code hl_class" href="classDinheiro.html">Dinheiro</a> <a class="code hl_function" href="classDinheiro.html#a23c0cd8212b41b871807122c944e03cc">Dinheiro::operator*</a>(<span class="keywordtype">int</span> qtd)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classDinheiro.html#a7529ac8a24b2cca107c06abe1a9d1f74">Dinheiro</a>(<a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a> * qtd); }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classDinheiro.html#aacf4ee40f6bc618300739b3ee576edc6">   19</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classDinheiro.html#aacf4ee40f6bc618300739b3ee576edc6">Dinheiro::operator&lt;</a>(<span class="keyword">const</span> <a class="code hl_class" href="classDinheiro.html">Dinheiro</a>&amp; o)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a> &lt; o.<a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a>; }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classDinheiro.html#a9f345975875714fd2827fdbbf2d2b391">   20</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classDinheiro.html#a9f345975875714fd2827fdbbf2d2b391">Dinheiro::operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classDinheiro.html">Dinheiro</a>&amp; o)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a> == o.<a class="code hl_variable" href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">centavos_</a>; }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="dinheiro_8cpp.html#acce7a5e7251ba6ec1925a0ea85041ae5">   22</a></span>std::ostream&amp; <a class="code hl_function" href="dinheiro_8cpp.html#acce7a5e7251ba6ec1925a0ea85041ae5">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_class" href="classDinheiro.html">Dinheiro</a>&amp; d) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    int64_t c = d.<a class="code hl_function" href="classDinheiro.html#a9b297c399352ed3d6fd6243eef910fa3">centavos</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">if</span> (c &lt; 0) { os &lt;&lt; <span class="stringliteral">&quot;-&quot;</span>; c = -c; }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    os &lt;&lt; <span class="stringliteral">&quot;R$ &quot;</span> &lt;&lt; c / 100 &lt;&lt; <span class="charliteral">&#39;,&#39;</span> &lt;&lt; (c % 100 &lt; 10 ? <span class="stringliteral">&quot;0&quot;</span> : <span class="stringliteral">&quot;&quot;</span>) &lt;&lt; c % 100;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+</div>
+<div class="ttc" id="aclassDinheiro_html"><div class="ttname"><a href="classDinheiro.html">Dinheiro</a></div><div class="ttdoc">Valor guardado em centavos.</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8h_source.html#l00017">dinheiro.h:17</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a23c0cd8212b41b871807122c944e03cc"><div class="ttname"><a href="classDinheiro.html#a23c0cd8212b41b871807122c944e03cc">Dinheiro::operator*</a></div><div class="ttdeci">Dinheiro operator*(int qtd) const</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00018">dinheiro.cpp:18</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a2bf3ed8328dddbc2632865cb44deb424"><div class="ttname"><a href="classDinheiro.html#a2bf3ed8328dddbc2632865cb44deb424">Dinheiro::reais</a></div><div class="ttdeci">static Dinheiro reais(double r)</div><div class="ttdoc">Cria um valor a partir de reais.</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00014">dinheiro.cpp:14</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a3218802c9ffad71c80b9d47a7c85f0d8"><div class="ttname"><a href="classDinheiro.html#a3218802c9ffad71c80b9d47a7c85f0d8">Dinheiro::centavos_</a></div><div class="ttdeci">int64_t centavos_</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8h_source.html#l00037">dinheiro.h:37</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a6f11a20b74281a61dbd89a10e6bf877f"><div class="ttname"><a href="classDinheiro.html#a6f11a20b74281a61dbd89a10e6bf877f">Dinheiro::operator=</a></div><div class="ttdeci">Dinheiro &amp; operator=(const Dinheiro &amp;o)</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00008">dinheiro.cpp:8</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a7529ac8a24b2cca107c06abe1a9d1f74"><div class="ttname"><a href="classDinheiro.html#a7529ac8a24b2cca107c06abe1a9d1f74">Dinheiro::Dinheiro</a></div><div class="ttdeci">Dinheiro()</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00005">dinheiro.cpp:5</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a8f38091e79ab59b1adcd66489b0df320"><div class="ttname"><a href="classDinheiro.html#a8f38091e79ab59b1adcd66489b0df320">Dinheiro::~Dinheiro</a></div><div class="ttdeci">~Dinheiro()</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00012">dinheiro.cpp:12</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a9b297c399352ed3d6fd6243eef910fa3"><div class="ttname"><a href="classDinheiro.html#a9b297c399352ed3d6fd6243eef910fa3">Dinheiro::centavos</a></div><div class="ttdeci">int64_t centavos() const</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00017">dinheiro.cpp:17</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_a9f345975875714fd2827fdbbf2d2b391"><div class="ttname"><a href="classDinheiro.html#a9f345975875714fd2827fdbbf2d2b391">Dinheiro::operator==</a></div><div class="ttdeci">bool operator==(const Dinheiro &amp;o) const</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00020">dinheiro.cpp:20</a></div></div>
+<div class="ttc" id="aclassDinheiro_html_aacf4ee40f6bc618300739b3ee576edc6"><div class="ttname"><a href="classDinheiro.html#aacf4ee40f6bc618300739b3ee576edc6">Dinheiro::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Dinheiro &amp;o) const</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00019">dinheiro.cpp:19</a></div></div>
+<div class="ttc" id="adinheiro_8cpp_html_acce7a5e7251ba6ec1925a0ea85041ae5"><div class="ttname"><a href="dinheiro_8cpp.html#acce7a5e7251ba6ec1925a0ea85041ae5">operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Dinheiro &amp;d)</div><div class="ttdef"><b>Definição</b> <a href="dinheiro_8cpp_source.html#l00022">dinheiro.cpp:22</a></div></div>
+<div class="ttc" id="adinheiro_8h_html"><div class="ttname"><a href="dinheiro_8h.html">dinheiro.h</a></div><div class="ttdoc">Declaracao da classe Dinheiro, que guarda valores em centavos.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
