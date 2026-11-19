@@ -1,3 +1,7 @@
+/**
+ * @file venda.h
+ * @brief Declaracao da classe Venda 
+ */
 #ifndef VENDA_H
 #define VENDA_H
 
@@ -5,9 +9,25 @@
 #include "data.h"
 #include "dinheiro.h"
 
+/**
+ * @brief Venda
+ * @details Registrar uma venda de algum produto em uma unidade
+ * 
+ */
 class Venda {
 public:
     Venda();
+    /**
+     * @brief Cria o registro de uma venda
+     * 
+     * @param id Identificador da venda 
+     * @param idUnidade Unidade
+     * @param codigoProduto Codigo do produto
+     * @param quantidade Quantidade vendida
+     * @param valorTotal Valor total da venda
+     * @param data Dia da venda
+     * @param idUsuario Quem realizou a venda
+     */
     Venda(int id, int idUnidade, const std::string& codigoProduto,
           int quantidade, const Dinheiro& valorTotal, const Data& data,
           int idUsuario);

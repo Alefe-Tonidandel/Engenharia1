@@ -22,3 +22,9 @@ test: all
 
 clean:
 	rm -f bin/bompreco bin/unit_tests bin/funcional_tests
+
+
+.PHONY: all test clean docs run
+docs:
+	doxygen Doxyfile
+	-explorer.exe "$$(wslpath -w docs/html/index.html)"
