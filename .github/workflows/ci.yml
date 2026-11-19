@@ -9,4 +9,3 @@ jobs:
         run: |
           mkdir -p bin
           make test
-        working-directory: BomPreco
