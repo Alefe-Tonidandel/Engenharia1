@@ -25,6 +25,7 @@ const Produto* Banco::buscarProduto(const std::string& codigo) const {
     return nullptr;
 }
 void Banco::adicionarProduto(const Produto& p) { produtos_.push_back(p); }
+const std::vector<Produto>& Banco::produtos() const { return produtos_; }
 
 LoteEstoque Banco::adicionarLote(int idUnidade, const std::string& codigoProduto,
                                  int quantidade, const Data& dataEntrada,

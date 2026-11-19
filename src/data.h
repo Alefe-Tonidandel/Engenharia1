@@ -5,7 +5,7 @@
 
 class Data {
 public:
-    Data();                                  // 01/01/1970
+    Data();                                  
     Data(int ano, int mes, int dia);
     Data(const Data& o);                     // construtor de copia
     Data& operator=(const Data& o);          // atribuicao
@@ -23,8 +23,7 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const Data& d);   // dd/mm/aaaa
 
-// Relogio do sistema: so metodos estaticos, nao ha o que copiar
-// (por isso nao tem forma canonica). Permite fixar a data nos testes.
+//Permite fixar a data nos testes.
 class Relogio {
 public:
     static Data hoje();

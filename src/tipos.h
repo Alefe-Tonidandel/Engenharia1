@@ -3,7 +3,7 @@
 
 #include <string>
 
-// Perfis de acesso (Sprint 2, API final)
+// Perfis de acesso (Sprint 2)
 enum class Perfil { OperadorCaixa, RepositorEstoque, GerenteUnidade,
                     GestorRede, Administrador };
 

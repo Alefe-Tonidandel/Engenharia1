@@ -32,7 +32,7 @@ std::ostream& operator<<(std::ostream& os, const Data& d) {
     return os;
 }
 
-// ---- Relogio ----
+//Relogio 
 static bool fixada_ = false;
 static Data dataFixa_;
 

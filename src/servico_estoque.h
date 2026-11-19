@@ -2,9 +2,11 @@
 #define SERVICO_ESTOQUE_H
 
 #include <string>
+#include <vector>
 #include "tipos.h"
 #include "usuario.h"
 #include "banco.h"
+#include "item_estoque.h"
 
 // Entradas e vendas da unidade da sessao.
 class ServicoEstoque {
@@ -20,9 +22,10 @@ public:
                                             int quantidade,
                                             const Data& validade);
 
-    // Operador ou Gerente: vende pelo lote que vence primeiro (FEFO),
+    // Operador ou Gerente: vende pelo lote que vence primeiro,
     // nunca de lote vencido
     Resultado<Venda> registrarVenda(const std::string& codigo, int quantidade);
+    Resultado<std::vector<ItemEstoque> > consultarEstoque(const FiltroEstoque& filtro);
 
 private:
     const Sessao* sessao_;

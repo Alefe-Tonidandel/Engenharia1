@@ -78,6 +78,15 @@ void cadastroFuncionalTest() {
     assert(cad.definirPrecoPadrao("BP-1265", Dinheiro::reais(12.00)).ok());
     assert(banco.buscarProduto("BP-1265")->preco() == Dinheiro::reais(12.00));
 
+    ServicoEstoque estGestor(gestor, banco);
+    FiltroEstoque fSemUnidade;
+    assert(estGestor.consultarEstoque(fSemUnidade).erro == Erro::UnidadeNaoInformada);
+    FiltroEstoque fUnidade1;
+    fUnidade1.idUnidade = 1;
+    auto cCad = estGestor.consultarEstoque(fUnidade1);
+    assert(cCad.ok() && cCad.valor.size() == 1);
+    assert(cCad.valor[0].codigoProduto() == "BP-1265");
+
     std::cout << "  cadastroFuncionalTest OK\n";
 }
 
@@ -119,6 +128,20 @@ void entradaFuncionalTest() {
     ServicoEstoque estGer(ger, banco);
     assert(estGer.registrarEntrada("BP-0501", 100, Data(2027, 3, 1)).ok());
 
+    FiltroEstoque fRepo;
+    auto cRepo = estoque.consultarEstoque(fRepo);
+    assert(cRepo.ok());
+    for (size_t i = 0; i < cRepo.valor.size(); ++i) {
+        if (cRepo.valor[i].codigoProduto() == "BP-0720") {
+            assert(cRepo.valor[i].quantidade() == 40);
+            assert(cRepo.valor[i].estoqueMinimo() == 60);
+            assert(cRepo.valor[i].abaixoDoMinimo());
+        }
+    }
+    FiltroEstoque fOutraUnidade;
+    fOutraUnidade.idUnidade = 2;
+    assert(estoque.consultarEstoque(fOutraUnidade).erro == Erro::AcessoNegado);
+
     std::cout << "  entradaFuncionalTest OK\n";
 }
 
@@ -126,51 +149,59 @@ void entradaFuncionalTest() {
 void vendaFuncionalTest() {
     Banco banco;
     montarCatalogo(banco);
-    montarLotes(banco);                        // lotes 1 a 4, entrada em 26/10
+    montarLotes(banco);
 
     Sessao op(Usuario(31, "Pedro Alves", Perfil::OperadorCaixa, 1));
     ServicoEstoque caixa(op, banco);
 
-    // 28/10: a venda sai do lote 1, que vence primeiro
     Relogio::fixar(Data(2026, 10, 28));
     Resultado<Venda> v1 = caixa.registrarVenda("BP-1265", 2);
     assert(v1.ok());
     assert(v1.valor.valorTotal() == Dinheiro::reais(22.40));
     assert(banco.buscarLote(1)->saldo() == 28 && banco.buscarLote(2)->saldo() == 50);
 
-    // 31/10: o lote 1 venceu (30/10); a venda sai do lote 2
     Relogio::fixar(Data(2026, 10, 31));
     Resultado<Venda> v2 = caixa.registrarVenda("BP-1265", 2);
     assert(v2.ok() && v2.valor.valorTotal() == Dinheiro::reais(22.40));
-    assert(banco.buscarLote(1)->saldo() == 28);        // vencido: intocado
+    assert(banco.buscarLote(1)->saldo() == 28);
     assert(banco.buscarLote(2)->saldo() == 48);
 
-    // 60 > 48 validos (os 28 vencidos nao contam): recusada, nada muda
     size_t vendas = banco.vendas().size();
     assert(caixa.registrarVenda("BP-1265", 60).erro == Erro::EstoqueInsuficiente);
     assert(banco.buscarLote(2)->saldo() == 48);
 
-    // 40 x 11,20 = 448,00
     Resultado<Venda> v3 = caixa.registrarVenda("BP-1265", 40);
     assert(v3.ok() && v3.valor.valorTotal() == Dinheiro::reais(448.00));
     assert(banco.buscarLote(2)->saldo() == 8 && banco.buscarLote(1)->saldo() == 28);
     assert(banco.vendas().size() == vendas + 1);
 
-    // outras recusas: nenhuma venda gravada
     vendas = banco.vendas().size();
-    assert(caixa.registrarVenda("BP-1265", 0).erro  == Erro::QuantidadeInvalida);
-    assert(caixa.registrarVenda("BP-0999", 1).erro  == Erro::ProdutoSemPreco);
-    assert(caixa.registrarVenda("BP-0000", 1).erro  == Erro::NaoEncontrado);
+    assert(caixa.registrarVenda("BP-1265", 0).erro == Erro::QuantidadeInvalida);
+    assert(caixa.registrarVenda("BP-0999", 1).erro == Erro::ProdutoSemPreco);
+    assert(caixa.registrarVenda("BP-0000", 1).erro == Erro::NaoEncontrado);
 
     Sessao repo(Usuario(21, "Joana Reis", Perfil::RepositorEstoque, 1));
     ServicoEstoque estRepo(repo, banco);
     assert(estRepo.registrarVenda("BP-1265", 1).erro == Erro::AcessoNegado);
 
-    // operador de OUTRA unidade nao enxerga o estoque da unidade 1
     Sessao op2(Usuario(32, "Lucas Melo", Perfil::OperadorCaixa, 2));
     ServicoEstoque caixa2(op2, banco);
     assert(caixa2.registrarVenda("BP-1265", 1).erro == Erro::EstoqueInsuficiente);
-
     assert(banco.vendas().size() == vendas);
+
+    FiltroEstoque fVenda;
+    fVenda.idUnidade = 1;
+    fVenda.categoria = "Hortifruti";
+    assert(caixa.consultarEstoque(fVenda).erro == Erro::AcessoNegado);
+
+    Sessao gerVenda(Usuario(41, "Fernanda Alves", Perfil::GerenteUnidade, 1));
+    ServicoEstoque estGerVenda(gerVenda, banco);
+    auto cVendaGer = estGerVenda.consultarEstoque(fVenda);
+    assert(cVendaGer.ok() && cVendaGer.valor.size() == 1);
+    assert(cVendaGer.valor[0].quantidade() == 8);
+    assert(cVendaGer.valor[0].quantidadeVencida() == 28);
+    assert(cVendaGer.valor[0].temValidade());
+    assert(cVendaGer.valor[0].validadeMaisProxima() == Data(2026, 11, 5));
+
     std::cout << "  vendaFuncionalTest OK\n";
 }

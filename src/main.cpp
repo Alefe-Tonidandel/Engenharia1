@@ -1,4 +1,4 @@
-// Bom-Preco - demonstracao do produto (Sprint 3)
+//demonstracao do produto (Sprint 3)
 #include <iostream>
 #include "banco.h"
 #include "servico_cadastros.h"

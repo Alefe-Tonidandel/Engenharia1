@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <iostream>
 
-// Valor em centavos (inteiro): sem erro de arredondamento do double.
+// Valor em centavos (inteiro) sem erro de arredondamento do double.
 class Dinheiro {
 public:
     Dinheiro();                                   // R$ 0,00

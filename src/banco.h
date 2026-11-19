@@ -7,7 +7,7 @@
 #include "lote.h"
 #include "venda.h"
 
-// "Banco de dados" em memoria: guarda o catalogo, os lotes e as vendas.
+// "Banco de dados" pra guardar o catalogo, os lotes e as vendas.
 // Os servicos recebem um Banco e trabalham em cima dele.
 class Banco {
 public:
@@ -20,6 +20,7 @@ public:
     Produto*       buscarProduto(const std::string& codigo);
     const Produto* buscarProduto(const std::string& codigo) const;
     void           adicionarProduto(const Produto& p);
+    const std::vector<Produto>& produtos() const;
 
     // lotes (o Banco gera o id sequencial)
     LoteEstoque adicionarLote(int idUnidade, const std::string& codigoProduto,

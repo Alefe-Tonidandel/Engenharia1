@@ -88,3 +88,66 @@ ResVenda ServicoEstoque::registrarVenda(const std::string& codigo,
                                      p->preco() * quantidade, hoje, eu.id());
     return ResVenda::sucesso(v);
 }
+
+Resultado<std::vector<ItemEstoque> >
+ServicoEstoque::consultarEstoque(const FiltroEstoque& filtro) {
+    typedef Resultado<std::vector<ItemEstoque> > ResItens;
+    if (!sessao_ || !banco_)
+        return ResItens::falha(Erro::AcessoNegado, "Sem sessao");
+
+    const Usuario& eu = sessao_->usuario();
+    Perfil perfil = eu.perfil();
+
+    int idUnidade = 0;
+    if (perfil == Perfil::RepositorEstoque || perfil == Perfil::GerenteUnidade) {
+        if (filtro.idUnidade.has_value() && *filtro.idUnidade != eu.idUnidade())
+            return ResItens::falha(Erro::AcessoNegado,
+                                   "Consulta restrita a propria unidade");
+        idUnidade = eu.idUnidade();
+    } else if (perfil == Perfil::GestorRede || perfil == Perfil::Administrador) {
+        if (!filtro.idUnidade.has_value())
+            return ResItens::falha(Erro::UnidadeNaoInformada,
+                                   "Informe a unidade a consultar");
+        idUnidade = *filtro.idUnidade;
+    } else {
+        return ResItens::falha(Erro::AcessoNegado,
+                               "Perfil sem permissao para consultar estoque");
+    }
+
+    Data hoje = Relogio::hoje();
+    const std::vector<Produto>& produtos = banco_->produtos();
+    const std::vector<LoteEstoque>& lotes = banco_->lotes();
+    std::vector<ItemEstoque> itens;
+
+    for (size_t i = 0; i < produtos.size(); ++i) {
+        const Produto& p = produtos[i];
+        if (!filtro.categoria.empty() && p.categoria() != filtro.categoria)
+            continue;
+
+        int valida = 0, vencida = 0;
+        bool temValidade = false;
+        Data proxima;
+
+        for (size_t j = 0; j < lotes.size(); ++j) {
+            const LoteEstoque& l = lotes[j];
+            if (l.idUnidade() != idUnidade || l.codigoProduto() != p.codigo()
+                || l.saldo() <= 0)
+                continue;
+
+            if (l.vencido(hoje)) {
+                vencida += l.saldo();
+            } else {
+                valida += l.saldo();
+                if (!temValidade || l.validade() < proxima) {
+                    proxima = l.validade();
+                    temValidade = true;
+                }
+            }
+        }
+
+        itens.push_back(ItemEstoque(p.codigo(), p.nome(), valida, vencida,
+                                    p.estoqueMinimo(), temValidade, proxima));
+    }
+
+    return ResItens::sucesso(itens);
+}
