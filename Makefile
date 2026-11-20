@@ -1,17 +1,30 @@
-CXX = g++
-CXXFLAGS = -Wall -Iinclude
+CXX      = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -Isrc
+LIB      = $(filter-out src/main.cpp,$(wildcard src/*.cpp))
 
-SRC = $(wildcard src/*.cpp)
-OBJ = $(SRC:.cpp=.o)
-EXEC = bin/app.exe
+all: bin/bompreco bin/unit_tests bin/funcional_tests
 
-all: $(EXEC)
+bin/bompreco: src/main.cpp $(LIB)
+	mkdir -p bin
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-$(EXEC): $(OBJ)
-	$(CXX) $(OBJ) -o $(EXEC)
+bin/unit_tests: test/unit/main.cpp test/unit/unit_tests.cpp $(LIB)
+	mkdir -p bin
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+bin/funcional_tests: test/funcional/main.cpp test/funcional/funcional_tests.cpp $(LIB)
+	mkdir -p bin
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test: all
+	./bin/unit_tests
+	./bin/funcional_tests
 
 clean:
-	rm -f src/*.o bin/*
+	rm -f bin/bompreco bin/unit_tests bin/funcional_tests
+
+
+.PHONY: all test clean docs run
+docs:
+	doxygen Doxyfile
+	-explorer.exe "$$(wslpath -w docs/html/index.html)"
