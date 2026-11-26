@@ -1,26 +1,26 @@
-#include "servico_estoque.h"
+#include "servico_estoque_impl.h"
 #include <algorithm>
 #include <vector>
 
-typedef Resultado<LoteEstoque> ResLote;
-typedef Resultado<Venda>       ResVenda;
+typedef Resultado<const LoteEstoque*> ResLote;
+typedef Resultado<const Venda*>       ResVenda;
 
-ServicoEstoque::ServicoEstoque() : sessao_(nullptr), banco_(nullptr) {}
-ServicoEstoque::ServicoEstoque(const Sessao& sessao, Banco& banco)
+ServicoEstoqueImpl::ServicoEstoqueImpl() : sessao_(nullptr), banco_(nullptr) {}
+ServicoEstoqueImpl::ServicoEstoqueImpl(const Sessao& sessao, Banco& banco)
     : sessao_(&sessao), banco_(&banco) {}
-ServicoEstoque::ServicoEstoque(const ServicoEstoque& o)
-    : sessao_(o.sessao_), banco_(o.banco_) {}
-ServicoEstoque& ServicoEstoque::operator=(const ServicoEstoque& o) {
+ServicoEstoqueImpl::ServicoEstoqueImpl(const ServicoEstoqueImpl& o)
+    : ServicoEstoque(), sessao_(o.sessao_), banco_(o.banco_) {}
+ServicoEstoqueImpl& ServicoEstoqueImpl::operator=(const ServicoEstoqueImpl& o) {
     if (this != &o) { sessao_ = o.sessao_; banco_ = o.banco_; }
     return *this;
 }
-ServicoEstoque::~ServicoEstoque() {}
+ServicoEstoqueImpl::~ServicoEstoqueImpl() {}
 
 static bool menorValidade(const LoteEstoque* a, const LoteEstoque* b) {
     return a->validade() < b->validade();
 }
 
-ResLote ServicoEstoque::registrarEntrada(const std::string& codigo,
+ResLote ServicoEstoqueImpl::registrarEntrada(const std::string& codigo,
                                          int quantidade, const Data& validade) {
     if (!sessao_ || !banco_)
         return ResLote::falha(Erro::AcessoNegado, "Sem sessao");
@@ -38,12 +38,12 @@ ResLote ServicoEstoque::registrarEntrada(const std::string& codigo,
     if (validade < hoje)
         return ResLote::falha(Erro::ValidadeVencida, "Validade ja passou");
 
-    LoteEstoque l = banco_->adicionarLote(eu.idUnidade(), codigo, quantidade,
+    const LoteEstoque& l = banco_->adicionarLote(eu.idUnidade(), codigo, quantidade,
                                           hoje, validade);
-    return ResLote::sucesso(l);
+    return ResLote::sucesso(&l);
 }
 
-ResVenda ServicoEstoque::registrarVenda(const std::string& codigo,
+ResVenda ServicoEstoqueImpl::registrarVenda(const std::string& codigo,
                                         int quantidade) {
     if (!sessao_ || !banco_)
         return ResVenda::falha(Erro::AcessoNegado, "Sem sessao");
@@ -68,11 +68,9 @@ ResVenda ServicoEstoque::registrarVenda(const std::string& codigo,
 
     // lotes validos da unidade, do que vence primeiro para o que vence depois
     std::vector<LoteEstoque*> candidatos;
-    std::vector<LoteEstoque>& todos = banco_->lotes();
-    for (size_t i = 0; i < todos.size(); ++i) {
-        LoteEstoque& l = todos[i];
-        if (l.idUnidade() == eu.idUnidade() && l.codigoProduto() == codigo &&
-            l.saldo() > 0 && !l.vencido(hoje))
+    for (int i = 0; i < banco_->quantidadeLotes(); ++i) {
+        LoteEstoque& l = banco_->lote(i);
+        if (l.idUnidade() == eu.idUnidade() && l.codigoProduto() == codigo && l.saldo() > 0 && !l.vencido(hoje))
             candidatos.push_back(&l);
     }
     std::stable_sort(candidatos.begin(), candidatos.end(), menorValidade);
@@ -84,13 +82,13 @@ ResVenda ServicoEstoque::registrarVenda(const std::string& codigo,
         falta -= tira;
     }
 
-    Venda v = banco_->adicionarVenda(eu.idUnidade(), codigo, quantidade,
+    const Venda& v = banco_->adicionarVenda(eu.idUnidade(), codigo, quantidade,
                                      p->preco() * quantidade, hoje, eu.id());
-    return ResVenda::sucesso(v);
+    return ResVenda::sucesso(&v);
 }
 
 Resultado<std::vector<ItemEstoque> >
-ServicoEstoque::consultarEstoque(const FiltroEstoque& filtro) {
+ServicoEstoqueImpl::consultarEstoque(const FiltroEstoque& filtro) {
     typedef Resultado<std::vector<ItemEstoque> > ResItens;
     if (!sessao_ || !banco_)
         return ResItens::falha(Erro::AcessoNegado, "Sem sessao");
@@ -115,12 +113,10 @@ ServicoEstoque::consultarEstoque(const FiltroEstoque& filtro) {
     }
 
     Data hoje = Relogio::hoje();
-    const std::vector<Produto>& produtos = banco_->produtos();
-    const std::vector<LoteEstoque>& lotes = banco_->lotes();
     std::vector<ItemEstoque> itens;
 
-    for (size_t i = 0; i < produtos.size(); ++i) {
-        const Produto& p = produtos[i];
+    for (int i = 0; i < banco_->quantidadeProdutos(); ++i) {
+        const Produto& p = banco_->produto(i);
         if (!filtro.categoria.empty() && p.categoria() != filtro.categoria)
             continue;
 
@@ -128,8 +124,8 @@ ServicoEstoque::consultarEstoque(const FiltroEstoque& filtro) {
         bool temValidade = false;
         Data proxima;
 
-        for (size_t j = 0; j < lotes.size(); ++j) {
-            const LoteEstoque& l = lotes[j];
+        for (int j = 0; j < banco_->quantidadeLotes(); ++j) {
+            const LoteEstoque& l =banco_-> lote(j);
             if (l.idUnidade() != idUnidade || l.codigoProduto() != p.codigo()
                 || l.saldo() <= 0)
                 continue;

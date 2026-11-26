@@ -1,6 +1,6 @@
 /**
  * @file servico_estoque.h
- * @brief Declaracao do ServicoEstoque - entrada de lotes e vendas
+ * @brief Interface ServicoEstoque
  */
 #ifndef SERVICO_ESTOQUE_H
 #define SERVICO_ESTOQUE_H
@@ -8,66 +8,21 @@
 #include <string>
 #include <vector>
 #include "tipos.h"
-#include "usuario.h"
-#include "banco.h"
 #include "item_estoque.h"
+#include "lote.h"
+#include "venda.h"
 
-// Entradas e vendas da unidade da sessao.
 /**
- * @brief Servico de estoque 
- * @details Registra entrada de lotes ou registra venda de produtos
+ * @brief Servico de estoque
+ * @details Registra entradas de lotes e vendas, sempre na unidade do usuario logado e consulta o estoque
  * 
  */
 class ServicoEstoque {
 public:
-    ServicoEstoque();
-    /**
-     * @brief Cria um servico ligado a uma sessao e a um banco
-     * 
-     * @param sessao Usuario logado
-     * @param banco Banco onde os lotes e as vendas sao gravados
-     */
-    ServicoEstoque(const Sessao& sessao, Banco& banco);
-    ServicoEstoque(const ServicoEstoque& o);
-    ServicoEstoque& operator=(const ServicoEstoque& o);
-    ~ServicoEstoque();
-
-    // Repositor ou Gerente: cria um lote na unidade da sessao
-    /**
-     * @brief Registrar entrada, apenas por repositor ou gerente
-     * 
-     * @param codigo Codigo do produto
-     * @param quantidade Quantidade que esta entrando
-     * @param validade Validade do produto
-     * @return Retorna o lote criado ou erro
-     */
-    Resultado<LoteEstoque> registrarEntrada(const std::string& codigo,
-                                            int quantidade,
-                                            const Data& validade);
-
-    // Operador ou Gerente: vende pelo lote que vence primeiro (FEFO),
-    // nunca de lote vencido
-    /**
-     * @brief Registrar venda de produtos, apenas operador ou gerente
-     * @details A venda é feita pela lógica de FEFO: sai do lote que vence primeiro, nunca lote vencido
-     * @param codigo Codigo do produto
-     * @param quantidade Quantidade vendida
-     * @return Retorna a venda registrada ou erro 
-     */
-    Resultado<Venda> registrarVenda(const std::string& codigo, int quantidade);
-    /**
-     * @brief Consulta o estoque de uma unidade
-     * @details Para cada produto do catalogo, soma os lotes validos e vencidos de uma unidade
-     * 
-     * @param filtro Unidade e categoria p consultar
-     * @return Retorna a lista de itens do estoque ou erro 
-     */
-    Resultado<std::vector<ItemEstoque> > consultarEstoque(const FiltroEstoque& filtro);
-
-
-private:
-    const Sessao* sessao_;
-    Banco*        banco_;
+    virtual ~ServicoEstoque(){}
+    virtual Resultado<const LoteEstoque*> registrarEntrada(const std::string& codigo, int quantidade, const Data& validade) = 0;
+    virtual Resultado<const Venda*> registrarVenda(const std::string& codigo, int quantidade) = 0;
+    virtual Resultado<std::vector<ItemEstoque> > consultarEstoque(const FiltroEstoque& filtro) = 0;
 };
 
 #endif

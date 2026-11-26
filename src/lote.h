@@ -1,63 +1,44 @@
 /**
  * @file lote.h
- * @brief Declaração da classe LoteEstoque
+ * @brief Interface LoteEstoque
  */
 #ifndef LOTE_H
 #define LOTE_H
 
 #include <string>
 #include "data.h"
-
 /**
  * @brief Lote de um produto
- * @details Lote do estoque de algum produto na unidade, com validade propria
+ * @details Lote do estoque de algum produto na unidade, com validade propria. 
+ * A implementação esta em loteEstoqueImpl
  * 
  */
 class LoteEstoque {
 public:
-    LoteEstoque();
-    /**
-     * @brief Construct a new Lote Estoque object
-     * 
-     * @param id Identificação do lote
-     * @param idUnidade Unidade que estamos dando entrada 
-     * @param codigoProduto Codigo de identificação do produto
-     * @param quantidade Quantidade que esta chegando
-     * @param dataEntrada Data de recebimento
-     * @param validade Validade do lote 
-     */
-    LoteEstoque(int id, int idUnidade, const std::string& codigoProduto,
-                int quantidade, const Data& dataEntrada, const Data& validade);
-    LoteEstoque(const LoteEstoque& o);
-    LoteEstoque& operator=(const LoteEstoque& o);
-    ~LoteEstoque();
+    virtual ~LoteEstoque(){} ///<Destrutor virtual
+    virtual int id() const = 0; ///< Identificacao do lote
+    virtual int idUnidade() const = 0; ///<Unidade do lote
+    virtual const std::string& codigoProduto() const = 0;///<Codigo do produto do lote
+    virtual int quantidadeInicial() const = 0; ///<Qtd que chegou
+    virtual int saldo() const = 0; ///<Qtd que ainda resta
+    virtual const Data& dataEntrada() const = 0; ///<Data recebimento
+    virtual const Data& validade() const = 0; ///<Validade do lote
 
-    int id() const;
-    int idUnidade() const;
-    const std::string& codigoProduto() const;
-    int quantidadeInicial() const;
-    int saldo() const;
-    const Data& dataEntrada() const;
-    const Data& validade() const;
     /**
-     * @brief Diz se o lote ja venceu
+     * @brief Diz de o lote ja venceu
      * 
-     * @param hoje  Data de referencia
-     * @return true se hoje for depois da validade
+     * @param hoje Data de referencia
+     * @return true se hoje for dps da validade
      */
-    bool vencido(const Data& hoje) const;   // vale ate o dia da validade
-    /**
-     * @brief Desconta uma quantidade do saldo do lote
-     * 
-     * @param quantidade Quantidade retirada
-     */
-    void baixar(int quantidade);            // desconta do saldo
+    virtual bool vencido(const Data& hoje) const = 0;
 
-private:
-    int         id_, idUnidade_;
-    std::string codigoProduto_;
-    int         quantidadeInicial_, saldo_;
-    Data        dataEntrada_, validade_;
+    /**
+     * @brief Desconta uma qtd do saldo do lote
+     * 
+     * @param quantidade Quantidade vendida/vencida pra retirar 
+     */
+    virtual void baixar(int quantidade) = 0;
+
 };
 
 #endif

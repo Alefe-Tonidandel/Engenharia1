@@ -1,6 +1,6 @@
 /**
  * @file venda.h
- * @brief Declaracao da classe Venda 
+ * @brief Interface Venda
  */
 #ifndef VENDA_H
 #define VENDA_H
@@ -10,46 +10,19 @@
 #include "dinheiro.h"
 
 /**
- * @brief Venda
- * @details Registrar uma venda de algum produto em uma unidade
+ * @brief Registro de uma venda 
  * 
  */
 class Venda {
 public:
-    Venda();
-    /**
-     * @brief Cria o registro de uma venda
-     * 
-     * @param id Identificador da venda 
-     * @param idUnidade Unidade
-     * @param codigoProduto Codigo do produto
-     * @param quantidade Quantidade vendida
-     * @param valorTotal Valor total da venda
-     * @param data Dia da venda
-     * @param idUsuario Quem realizou a venda
-     */
-    Venda(int id, int idUnidade, const std::string& codigoProduto,
-          int quantidade, const Dinheiro& valorTotal, const Data& data,
-          int idUsuario);
-    Venda(const Venda& o);
-    Venda& operator=(const Venda& o);
-    ~Venda();
-
-    int id() const;
-    int idUnidade() const;
-    const std::string& codigoProduto() const;
-    int quantidade() const;
-    const Dinheiro& valorTotal() const;
-    const Data& data() const;
-    int idUsuario() const;
-
-private:
-    int         id_, idUnidade_;
-    std::string codigoProduto_;
-    int         quantidade_;
-    Dinheiro    valorTotal_;
-    Data        data_;
-    int         idUsuario_;
+    virtual ~Venda(){} 
+    virtual int id() const = 0;
+    virtual int idUnidade() const = 0;
+    virtual const std::string& codigoProduto() const = 0;
+    virtual int quantidade() const = 0;
+    virtual const Dinheiro& valorTotal() const = 0;
+    virtual const Data& data() const = 0;
+    virtual int idUsuario() const = 0;
 };
 
 #endif
