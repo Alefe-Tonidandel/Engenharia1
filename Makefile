@@ -1,30 +1,34 @@
-CXX      = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Isrc
-LIB      = $(filter-out src/main.cpp,$(wildcard src/*.cpp))
+MODULO = $(filter-out src/main.cpp, $(wildcard src/*.cpp))
+FLAGS = -std=c++17 -Wall -Wextra -Isrc
 
-all: bin/bompreco bin/unit_tests bin/funcional_tests
-
-bin/bompreco: src/main.cpp $(LIB)
+build:
 	mkdir -p bin
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	g++ $(FLAGS) src/main.cpp $(MODULO) -o bin/app
+run: build
+	./bin/app
 
-bin/unit_tests: test/unit/main.cpp test/unit/unit_tests.cpp $(LIB)
+build_unit:
 	mkdir -p bin
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	g++ $(FLAGS) test/unit/*.cpp $(MODULO) -o bin/unit_testes
 
-bin/funcional_tests: test/funcional/main.cpp test/funcional/funcional_tests.cpp $(LIB)
+run_unit: build_unit
+	./bin/unit_testes
+
+build_func:
 	mkdir -p bin
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	g++ $(FLAGS) test/funcional/*.cpp $(MODULO) -o bin/func_testes
 
-test: all
-	./bin/unit_tests
-	./bin/funcional_tests
+run_func: build_func
+	./bin/func_testes
 
-clean:
-	rm -f bin/bompreco bin/unit_tests bin/funcional_tests
+# usado pelo CI do GitHub
+test: run_unit run_func
 
-
-.PHONY: all test clean docs run
 docs:
 	doxygen Doxyfile
 	-explorer.exe "$$(wslpath -w docs/html/index.html)"
+
+clean:
+	rm -f bin/app bin/unit_testes bin/func_testes
+
+.PHONY: build run build_unit run_unit build_func run_func test docs clean

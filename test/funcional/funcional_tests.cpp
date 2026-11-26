@@ -1,14 +1,15 @@
 #include <cassert>
 #include <iostream>
 #include "funcional_tests.h"
-#include "../../src/banco.h"
-#include "../../src/servico_cadastros.h"
-#include "../../src/servico_estoque.h"
+#include "../../src/banco_impl.h"
+#include "../../src/servico_cadastros_impl.h"
+#include "../../src/servico_estoque_impl.h"
+#include "../../src/sessao_impl.h"
 
 // ---- apoio: monta o catalogo da Tabela 3 do Sprint 2 ----
 static void montarCatalogo(Banco& banco) {
-    Sessao gestor(Usuario(10, "Rafael Lima", Perfil::GestorRede, 0));
-    ServicoCadastros cad(gestor, banco);
+    SessaoImpl gestor(UsuarioImpl(10, "Rafael Lima", Perfil::GestorRede, 0));
+    ServicoCadastrosImpl cad(gestor, banco);
     DadosProduto d[] = {
         {"BP-1265", "Tomate italiano (kg)", "Hortifruti", Dinheiro::reais(8.40),  20},
         {"BP-0501", "Arroz branco 5 kg",    "Mercearia",  Dinheiro::reais(22.00), 40},
@@ -23,8 +24,8 @@ static void montarCatalogo(Banco& banco) {
 // ---- apoio: lotes da Tabela 4 (unidade 1, entrada em 26/10/2026) ----
 static void montarLotes(Banco& banco) {
     Relogio::fixar(Data(2026, 10, 26));
-    Sessao repo(Usuario(21, "Joana Reis", Perfil::RepositorEstoque, 1));
-    ServicoEstoque estoque(repo, banco);
+    SessaoImpl repo(UsuarioImpl(21, "Joana Reis", Perfil::RepositorEstoque, 1));
+    ServicoEstoqueImpl estoque(repo, banco);
     estoque.registrarEntrada("BP-1265", 30, Data(2026, 10, 30));   // lote 1
     estoque.registrarEntrada("BP-1265", 50, Data(2026, 11, 5));    // lote 2
     estoque.registrarEntrada("BP-0501", 100, Data(2027, 3, 1));    // lote 3
@@ -33,16 +34,16 @@ static void montarLotes(Banco& banco) {
 
 // ============ Funcional 1: Gestor da Rede ============
 void cadastroFuncionalTest() {
-    Banco banco;
-    Sessao gestor(Usuario(10, "Rafael Lima", Perfil::GestorRede, 0));
-    ServicoCadastros cad(gestor, banco);
+    BancoImpl banco;
+    SessaoImpl gestor(UsuarioImpl(10, "Rafael Lima", Perfil::GestorRede, 0));
+    ServicoCadastrosImpl cad(gestor, banco);
 
     // cadastrar: produto entra sem preco
     DadosProduto tomate = {"BP-1265", "Tomate italiano (kg)", "Hortifruti",
                            Dinheiro::reais(8.40), 20};
-    Resultado<Produto> r = cad.cadastrarProduto(tomate);
+    Resultado<const Produto*> r = cad.cadastrarProduto(tomate);
     assert(r.ok());
-    assert(!r.valor.temPreco());
+    assert(!r.valor->temPreco());
     assert(banco.buscarProduto("BP-1265") != nullptr);
 
     // cadastros recusados
@@ -55,8 +56,8 @@ void cadastroFuncionalTest() {
     assert(cad.cadastrarProduto(minNeg).erro == Erro::QuantidadeInvalida);
     assert(banco.buscarProduto("BP-7") == nullptr);    // nada foi criado
 
-    Sessao op(Usuario(31, "Pedro Alves", Perfil::OperadorCaixa, 1));
-    ServicoCadastros cadOp(op, banco);
+    SessaoImpl op(UsuarioImpl(31, "Pedro Alves", Perfil::OperadorCaixa, 1));
+    ServicoCadastrosImpl cadOp(op, banco);
     assert(cadOp.cadastrarProduto(tomate).erro == Erro::AcessoNegado);
 
     // preco padrao
@@ -78,7 +79,7 @@ void cadastroFuncionalTest() {
     assert(cad.definirPrecoPadrao("BP-1265", Dinheiro::reais(12.00)).ok());
     assert(banco.buscarProduto("BP-1265")->preco() == Dinheiro::reais(12.00));
 
-    ServicoEstoque estGestor(gestor, banco);
+    ServicoEstoqueImpl estGestor(gestor, banco);
     FiltroEstoque fSemUnidade;
     assert(estGestor.consultarEstoque(fSemUnidade).erro == Erro::UnidadeNaoInformada);
     FiltroEstoque fUnidade1;
@@ -92,40 +93,40 @@ void cadastroFuncionalTest() {
 
 // ============ Funcional 2: Repositor de Estoque ============
 void entradaFuncionalTest() {
-    Banco banco;
+    BancoImpl banco;
     montarCatalogo(banco);
     Relogio::fixar(Data(2026, 10, 26));
 
-    Sessao repo(Usuario(21, "Joana Reis", Perfil::RepositorEstoque, 1));
-    ServicoEstoque estoque(repo, banco);
+    SessaoImpl repo(UsuarioImpl(21, "Joana Reis", Perfil::RepositorEstoque, 1));
+    ServicoEstoqueImpl estoque(repo, banco);
 
     // lote 1 e lote 2 do mesmo produto
-    Resultado<LoteEstoque> l1 = estoque.registrarEntrada("BP-1265", 30, Data(2026, 10, 30));
-    assert(l1.ok() && l1.valor.id() == 1 && l1.valor.saldo() == 30);
-    assert(l1.valor.idUnidade() == 1);                     // unidade vem da sessao
+    Resultado<const LoteEstoque*> l1 = estoque.registrarEntrada("BP-1265", 30, Data(2026, 10, 30));
+    assert(l1.ok() && l1.valor->id() == 1 && l1.valor->saldo() == 30);
+    assert(l1.valor->idUnidade() == 1);                     // unidade vem da sessao
     assert(banco.saldoValido(1, "BP-1265", Relogio::hoje()) == 30);
 
-    Resultado<LoteEstoque> l2 = estoque.registrarEntrada("BP-1265", 50, Data(2026, 11, 5));
-    assert(l2.ok() && l2.valor.id() == 2);
+    Resultado<const LoteEstoque*> l2 = estoque.registrarEntrada("BP-1265", 50, Data(2026, 11, 5));
+    assert(l2.ok() && l2.valor->id() == 2);
     assert(banco.saldoValido(1, "BP-1265", Relogio::hoje()) == 80);   // 2 lotes
 
-    Resultado<LoteEstoque> l4 = estoque.registrarEntrada("BP-0720", 40, Data(2026, 12, 15));
+    Resultado<const LoteEstoque*> l4 = estoque.registrarEntrada("BP-0720", 40, Data(2026, 12, 15));
     assert(l4.ok() && banco.saldoValido(1, "BP-0720", Relogio::hoje()) == 40);
 
     // entradas recusadas: nenhum lote novo
-    size_t antes = banco.lotes().size();
+    int antes = banco.quantidadeLotes();
     assert(estoque.registrarEntrada("BP-1265", 10, Data(2026, 10, 20)).erro == Erro::ValidadeVencida);
     assert(estoque.registrarEntrada("BP-1265", 0,  Data(2026, 11, 5)).erro  == Erro::QuantidadeInvalida);
     assert(estoque.registrarEntrada("BP-0000", 10, Data(2026, 11, 5)).erro  == Erro::NaoEncontrado);
 
-    Sessao op(Usuario(31, "Pedro Alves", Perfil::OperadorCaixa, 1));
-    ServicoEstoque estOp(op, banco);
+    SessaoImpl op(UsuarioImpl(31, "Pedro Alves", Perfil::OperadorCaixa, 1));
+    ServicoEstoqueImpl estOp(op, banco);
     assert(estOp.registrarEntrada("BP-1265", 5, Data(2026, 12, 1)).erro == Erro::AcessoNegado);
-    assert(banco.lotes().size() == antes);
+    assert(banco.quantidadeLotes() == antes);
 
     // o Gerente da unidade tambem pode registrar entrada (na propria unidade)
-    Sessao ger(Usuario(41, "Fernanda Alves", Perfil::GerenteUnidade, 1));
-    ServicoEstoque estGer(ger, banco);
+    SessaoImpl ger(UsuarioImpl(41, "Fernanda Alves", Perfil::GerenteUnidade, 1));
+    ServicoEstoqueImpl estGer(ger, banco);
     assert(estGer.registrarEntrada("BP-0501", 100, Data(2027, 3, 1)).ok());
 
     FiltroEstoque fRepo;
@@ -147,55 +148,55 @@ void entradaFuncionalTest() {
 
 // ============ Funcional 3: Operador de Caixa ============
 void vendaFuncionalTest() {
-    Banco banco;
+    BancoImpl banco;
     montarCatalogo(banco);
     montarLotes(banco);
 
-    Sessao op(Usuario(31, "Pedro Alves", Perfil::OperadorCaixa, 1));
-    ServicoEstoque caixa(op, banco);
+    SessaoImpl op(UsuarioImpl(31, "Pedro Alves", Perfil::OperadorCaixa, 1));
+    ServicoEstoqueImpl caixa(op, banco);
 
     Relogio::fixar(Data(2026, 10, 28));
-    Resultado<Venda> v1 = caixa.registrarVenda("BP-1265", 2);
+    Resultado<const Venda*> v1 = caixa.registrarVenda("BP-1265", 2);
     assert(v1.ok());
-    assert(v1.valor.valorTotal() == Dinheiro::reais(22.40));
+    assert(v1.valor->valorTotal() == Dinheiro::reais(22.40));
     assert(banco.buscarLote(1)->saldo() == 28 && banco.buscarLote(2)->saldo() == 50);
 
     Relogio::fixar(Data(2026, 10, 31));
-    Resultado<Venda> v2 = caixa.registrarVenda("BP-1265", 2);
-    assert(v2.ok() && v2.valor.valorTotal() == Dinheiro::reais(22.40));
+    Resultado<const Venda*> v2 = caixa.registrarVenda("BP-1265", 2);
+    assert(v2.ok() && v2.valor->valorTotal() == Dinheiro::reais(22.40));
     assert(banco.buscarLote(1)->saldo() == 28);
     assert(banco.buscarLote(2)->saldo() == 48);
 
-    size_t vendas = banco.vendas().size();
+    int vendas = banco.quantidadeVendas();
     assert(caixa.registrarVenda("BP-1265", 60).erro == Erro::EstoqueInsuficiente);
     assert(banco.buscarLote(2)->saldo() == 48);
 
-    Resultado<Venda> v3 = caixa.registrarVenda("BP-1265", 40);
-    assert(v3.ok() && v3.valor.valorTotal() == Dinheiro::reais(448.00));
+    Resultado<const Venda*> v3 = caixa.registrarVenda("BP-1265", 40);
+    assert(v3.ok() && v3.valor->valorTotal() == Dinheiro::reais(448.00));
     assert(banco.buscarLote(2)->saldo() == 8 && banco.buscarLote(1)->saldo() == 28);
-    assert(banco.vendas().size() == vendas + 1);
+    assert(banco.quantidadeVendas() == vendas + 1);
 
-    vendas = banco.vendas().size();
+    vendas = banco.quantidadeVendas();
     assert(caixa.registrarVenda("BP-1265", 0).erro == Erro::QuantidadeInvalida);
     assert(caixa.registrarVenda("BP-0999", 1).erro == Erro::ProdutoSemPreco);
     assert(caixa.registrarVenda("BP-0000", 1).erro == Erro::NaoEncontrado);
 
-    Sessao repo(Usuario(21, "Joana Reis", Perfil::RepositorEstoque, 1));
-    ServicoEstoque estRepo(repo, banco);
+    SessaoImpl repo(UsuarioImpl(21, "Joana Reis", Perfil::RepositorEstoque, 1));
+    ServicoEstoqueImpl estRepo(repo, banco);
     assert(estRepo.registrarVenda("BP-1265", 1).erro == Erro::AcessoNegado);
 
-    Sessao op2(Usuario(32, "Lucas Melo", Perfil::OperadorCaixa, 2));
-    ServicoEstoque caixa2(op2, banco);
+    SessaoImpl op2(UsuarioImpl(32, "Lucas Melo", Perfil::OperadorCaixa, 2));
+    ServicoEstoqueImpl caixa2(op2, banco);
     assert(caixa2.registrarVenda("BP-1265", 1).erro == Erro::EstoqueInsuficiente);
-    assert(banco.vendas().size() == vendas);
+    assert(banco.quantidadeVendas() == vendas);
 
     FiltroEstoque fVenda;
     fVenda.idUnidade = 1;
     fVenda.categoria = "Hortifruti";
     assert(caixa.consultarEstoque(fVenda).erro == Erro::AcessoNegado);
 
-    Sessao gerVenda(Usuario(41, "Fernanda Alves", Perfil::GerenteUnidade, 1));
-    ServicoEstoque estGerVenda(gerVenda, banco);
+    SessaoImpl gerVenda(UsuarioImpl(41, "Fernanda Alves", Perfil::GerenteUnidade, 1));
+    ServicoEstoqueImpl estGerVenda(gerVenda, banco);
     auto cVendaGer = estGerVenda.consultarEstoque(fVenda);
     assert(cVendaGer.ok() && cVendaGer.valor.size() == 1);
     assert(cVendaGer.valor[0].quantidade() == 8);

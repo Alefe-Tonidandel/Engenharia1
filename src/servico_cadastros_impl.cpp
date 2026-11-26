@@ -1,25 +1,26 @@
-#include "servico_cadastros.h"
+#include "servico_cadastros_impl.h"
+#include "produto_impl.h"
 
-typedef Resultado<Produto> ResProduto;
+typedef Resultado<const Produto*> ResProduto;
 
-ServicoCadastros::ServicoCadastros() : sessao_(nullptr), banco_(nullptr) {}
-ServicoCadastros::ServicoCadastros(const Sessao& sessao, Banco& banco)
+ServicoCadastrosImpl::ServicoCadastrosImpl() : sessao_(nullptr), banco_(nullptr) {}
+ServicoCadastrosImpl::ServicoCadastrosImpl(const Sessao& sessao, Banco& banco)
     : sessao_(&sessao), banco_(&banco) {}
-ServicoCadastros::ServicoCadastros(const ServicoCadastros& o)
-    : sessao_(o.sessao_), banco_(o.banco_) {}
-ServicoCadastros& ServicoCadastros::operator=(const ServicoCadastros& o) {
+ServicoCadastrosImpl::ServicoCadastrosImpl(const ServicoCadastrosImpl& o)
+    : ServicoCadastros(), sessao_(o.sessao_), banco_(o.banco_) {}
+ServicoCadastrosImpl& ServicoCadastrosImpl::operator=(const ServicoCadastrosImpl& o) {
     if (this != &o) { sessao_ = o.sessao_; banco_ = o.banco_; }
     return *this;
 }
-ServicoCadastros::~ServicoCadastros() {}
+ServicoCadastrosImpl::~ServicoCadastrosImpl() {}
 
-bool ServicoCadastros::podeGerirCatalogo() const {
+bool ServicoCadastrosImpl::podeGerirCatalogo() const {
     if (!sessao_ || !banco_) return false;
     Perfil p = sessao_->usuario().perfil();
     return p == Perfil::GestorRede || p == Perfil::Administrador;
 }
 
-ResProduto ServicoCadastros::cadastrarProduto(const DadosProduto& d) {
+ResProduto ServicoCadastrosImpl::cadastrarProduto(const DadosProduto& d) {
     if (!podeGerirCatalogo())
         return ResProduto::falha(Erro::AcessoNegado,
                                  "Perfil sem permissao para cadastrar produto");
@@ -34,12 +35,12 @@ ResProduto ServicoCadastros::cadastrarProduto(const DadosProduto& d) {
     if (banco_->buscarProduto(d.codigo))
         return ResProduto::falha(Erro::Duplicado, "Codigo ja cadastrado");
 
-    Produto p(d.codigo, d.nome, d.categoria, d.custo, d.estoqueMinimo);
+    ProdutoImpl p(d.codigo, d.nome, d.categoria, d.custo, d.estoqueMinimo);
     banco_->adicionarProduto(p);          // fica sem preco ate definirPrecoPadrao
-    return ResProduto::sucesso(p);
+    return ResProduto::sucesso(banco_->buscarProduto(d.codigo));
 }
 
-ResProduto ServicoCadastros::definirPrecoPadrao(const std::string& codigo,
+ResProduto ServicoCadastrosImpl::definirPrecoPadrao(const std::string& codigo,
                                                 const Dinheiro& preco) {
     if (!podeGerirCatalogo())
         return ResProduto::falha(Erro::AcessoNegado,
@@ -52,5 +53,5 @@ ResProduto ServicoCadastros::definirPrecoPadrao(const std::string& codigo,
                                  "Preco deve ser maior que zero e nao menor que o custo");
 
     p->setPreco(preco);                   // vale para todas as unidades
-    return ResProduto::sucesso(*p);
+    return ResProduto::sucesso(p);
 }
