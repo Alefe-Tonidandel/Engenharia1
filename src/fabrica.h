@@ -1,6 +1,8 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 
+#include <string>
+#include "tipos.h"
 #include "banco.h"
 #include "sessao.h"
 #include "usuario.h"
@@ -15,6 +17,7 @@ public:
     ~Fabrica();
 
     Banco* criarBanco();
+    Usuario* criarUsuario(int id, const std::string& nome, Perfil perfil, int idUnidade);
     Sessao* criarSessao(const Usuario& u);
     ServicoCadastros* criarServicoCadastros(const Sessao& sessao, Banco& banco);
     ServicoEstoque* criarServicoEstoque(const Sessao& sessao, Banco& banco);

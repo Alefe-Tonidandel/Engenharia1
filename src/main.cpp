@@ -1,6 +1,5 @@
 #include <iostream>
 #include "fabrica.h"
-#include "usuario_impl.h"
 #include "data.h"
 #include "dinheiro.h"
 
@@ -9,8 +8,8 @@ int main() {
     Banco* banco = fabrica.criarBanco();
 
     Relogio::fixar(Data(2026, 10, 26));
-    UsuarioImpl uGestor(10, "Rafael Lima", Perfil::GestorRede, 0);
-    Sessao* gestor = fabrica.criarSessao(uGestor);
+    Usuario* uGestor = fabrica.criarUsuario(10, "Rafael Lima", Perfil::GestorRede, 0);
+    Sessao* gestor = fabrica.criarSessao(*uGestor);
     ServicoCadastros* cadastros = fabrica.criarServicoCadastros(*gestor, *banco);
 
     DadosProduto tomate = {"BP-1265", "Tomate italiano (kg)", "Hortifruti",
@@ -18,15 +17,15 @@ int main() {
     cadastros->cadastrarProduto(tomate);
     cadastros->definirPrecoPadrao("BP-1265", Dinheiro::reais(11.20));
 
-    UsuarioImpl uRepo(21, "Joana Reis", Perfil::RepositorEstoque, 1);
-    Sessao* repo = fabrica.criarSessao(uRepo);
+    Usuario* uRepo = fabrica.criarUsuario(21, "Joana Reis", Perfil::RepositorEstoque, 1);
+    Sessao* repo = fabrica.criarSessao(*uRepo);
     ServicoEstoque* estoque = fabrica.criarServicoEstoque(*repo, *banco);
     estoque->registrarEntrada("BP-1265", 30, Data(2026, 10, 30));
     estoque->registrarEntrada("BP-1265", 50, Data(2026, 11, 5));
 
     Relogio::fixar(Data(2026, 10, 31));
-    UsuarioImpl uOp(31, "Pedro Alves", Perfil::OperadorCaixa, 1);
-    Sessao* op = fabrica.criarSessao(uOp);
+    Usuario* uOp = fabrica.criarUsuario(31, "Pedro Alves", Perfil::OperadorCaixa, 1);
+    Sessao* op = fabrica.criarSessao(*uOp);
     ServicoEstoque* caixa = fabrica.criarServicoEstoque(*op, *banco);
 
     Resultado<const Venda*> v = caixa->registrarVenda("BP-1265", 2);
@@ -48,10 +47,13 @@ int main() {
 
     delete caixa;
     delete op;
+    delete uOp;
     delete estoque;
     delete repo;
+    delete uRepo;
     delete cadastros;
     delete gestor;
+    delete uGestor;
     delete banco;
     return 0;
 }

@@ -1,5 +1,6 @@
 #include "fabrica.h"
 #include "banco_impl.h"
+#include "usuario_impl.h"
 #include "sessao_impl.h"
 #include "servico_cadastros_impl.h"
 #include "servico_estoque_impl.h"
@@ -11,6 +12,10 @@ Fabrica::~Fabrica() {}
 
 Banco* Fabrica::criarBanco() {
     return new BancoImpl();
+}
+
+Usuario* Fabrica::criarUsuario(int id, const std::string& nome, Perfil perfil, int idUnidade) {
+    return new UsuarioImpl(id, nome, perfil, idUnidade);
 }
 
 Sessao* Fabrica::criarSessao(const Usuario& u) {
